@@ -54,4 +54,26 @@ collections:
             fields:
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Description", name: "alt", widget: "string" }
-              - { label: "Pixieset gallery link", name: "link", widget: "string", default: "https://selasievisualstudio.mypixieset.com" }
+              - { label: "Gallery link (e.g. gallery.html?g=your-gallery)", name: "link", widget: "string", default: "gallery.html" }
+      - label: "Galleries (full photo collections)"
+        name: "galleries"
+        file: "data/galleries.json"
+        fields:
+          - label: "Galleries"
+            name: "galleries"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Web address name (lowercase-with-dashes, e.g. ama-wedding)", name: "slug", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category (Events / Portraits / Weddings…)", name: "category", widget: "string" }
+              - { label: "Short description", name: "description", widget: "text", required: false }
+              - { label: "Cover image", name: "cover", widget: "image" }
+              - { label: "Pixieset link for client downloads (optional)", name: "pixieset", widget: "string", required: false }
+              - label: "Photos"
+                name: "images"
+                widget: "list"
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: "Photo", name: "src", widget: "image" }
+                  - { label: "Description (helps Google find you)", name: "alt", widget: "string", required: false }

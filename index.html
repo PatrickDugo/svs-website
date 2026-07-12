@@ -170,6 +170,13 @@
   .svc:hover .svc-go{color:var(--gold);gap:15px}
   .soon{margin-top:38px;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--dim)}
 
+  /* ═══ Interludes — full-bleed image breaks between sections ═══ */
+  .interlude{position:relative;height:clamp(340px,55vh,560px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0 24px}
+  .interlude .bg{position:absolute;inset:-12% 0;will-change:transform;z-index:0}
+  .interlude .bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.38) saturate(.92)}
+  .interlude q{position:relative;z-index:2;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.5rem,3.8vw,2.7rem);max-width:22ch;line-height:1.3;quotes:none}
+  .interlude q em{color:var(--gold);font-style:italic}
+
   /* ═══ Work — staggered editorial grid ═══ */
   .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2.5vw,32px);margin-top:56px;align-items:start}
   .g-card{position:relative;display:block;overflow:hidden;background:var(--panel);will-change:transform}
@@ -336,6 +343,11 @@
   </div>
 </div></section>
 
+<div class="interlude" aria-hidden="true">
+  <div class="bg" data-plx="0.14"><img src="https://images-pw.pixieset.com/site/BydGR0/9zq3me/_DSC0884-939c66fa-1500.jpg" alt="" loading="lazy"></div>
+  <q>Every frame, a feeling <em>kept.</em></q>
+</div>
+
 <section id="services" class="services"><div class="wrap">
   <p class="eyebrow rv">What we do</p>
   <h2 class="h2 rv">Services</h2>
@@ -362,7 +374,7 @@
   <div class="work-grid">
 
     <!-- GALLERY CARD 1 -->
-    <a class="g-card gc1 rv tilt js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-1/" target="_blank" rel="noopener noreferrer">
+    <a class="g-card gc1 rv tilt" href="gallery.html?g=julius-debrah-60th">
       <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/RQOYGj/_DSC0710-55c32621-1500.jpg" alt="Hon. Julius Debrah 60th birthday celebration — event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
@@ -373,7 +385,7 @@
     </a>
 
     <!-- GALLERY CARD 2 -->
-    <a class="g-card gc2 rv tilt js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-2/" target="_blank" rel="noopener noreferrer">
+    <a class="g-card gc2 rv tilt" href="gallery.html?g=director-ash">
       <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/K6VmP1/_DSC1136-9622d749-1500.jpg" alt="Director Ash portrait session at Kicks and Clothes Temple — portrait photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
@@ -384,7 +396,7 @@
     </a>
 
     <!-- GALLERY CARD 3 -->
-    <a class="g-card gc3 rv tilt js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-3/" target="_blank" rel="noopener noreferrer">
+    <a class="g-card gc3 rv tilt" href="gallery.html?g=mtn-masterclass">
       <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/QymnKW/_DSC9951-c776dcf4-1500.jpeg" alt="MTN Ghana Wealth and Wellness Masterclass — corporate event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
@@ -405,12 +417,12 @@
     <span class="hint rv">Drag / scroll →</span>
   </div>
   <div class="strip-track" id="strip">
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-1/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg" alt="Celebration moment photographed by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-2/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/rDPALR/_DSC1129-6a492a64-1500.jpg" alt="Portrait frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-3/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/abJ0mQ/_DSC9899-66b39ae4-1500.jpeg" alt="Corporate masterclass frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-1/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/M7nz01/_DSC0876-19dec795-1500.jpg" alt="Guests at a milestone celebration by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-2/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/3kq493/_DSC1139-63aa668c-1500.jpg" alt="Studio portrait frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-3/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/Z15JPM/_DSC9469-73a67cf3-1500.jpeg" alt="Keynote moment at MTN Ghana masterclass by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=julius-debrah-60th"><img src="https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg" alt="Celebration moment photographed by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=director-ash"><img src="https://images-pw.pixieset.com/site/BydGR0/rDPALR/_DSC1129-6a492a64-1500.jpg" alt="Portrait frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=mtn-masterclass"><img src="https://images-pw.pixieset.com/site/BydGR0/abJ0mQ/_DSC9899-66b39ae4-1500.jpeg" alt="Corporate masterclass frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=julius-debrah-60th"><img src="https://images-pw.pixieset.com/site/BydGR0/M7nz01/_DSC0876-19dec795-1500.jpg" alt="Guests at a milestone celebration by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=director-ash"><img src="https://images-pw.pixieset.com/site/BydGR0/3kq493/_DSC1139-63aa668c-1500.jpg" alt="Studio portrait frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=mtn-masterclass"><img src="https://images-pw.pixieset.com/site/BydGR0/Z15JPM/_DSC9469-73a67cf3-1500.jpeg" alt="Keynote moment at MTN Ghana masterclass by Selasie Visual Studio" loading="lazy"></a>
   </div>
 </section>
 
@@ -435,6 +447,11 @@
   </div>
   <div class="dots" id="dots" role="tablist" aria-label="Choose testimonial"></div>
 </div></section>
+
+<div class="interlude" aria-hidden="true">
+  <div class="bg" data-plx="0.14"><img src="https://images-pw.pixieset.com/site/BydGR0/1VqnWa/_DSC9804-6d2c5ce9-1500.jpeg" alt="" loading="lazy"></div>
+  <q>Light. Story. <em>Craft.</em></q>
+</div>
 
 <section id="pricing" class="pricing"><div class="wrap">
   <p class="eyebrow rv">Investment</p>
@@ -596,7 +613,7 @@ function wireVisuals(root){
 /* ═══ Photo hydration — reads data/photos.json (managed by the /admin panel).
    If the file is missing (e.g. previewing locally), the built-in photos above are shown. ═══ */
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const okUrl = u => /^(https:\/\/|images\/|data\/|\/)/.test(String(u ?? ''));
+const okUrl = u => /^(https:\/\/|images\/|data\/|gallery\.html|\/)/.test(String(u ?? ''));
 function setImg(sel, obj){
   const el = document.querySelector(sel);
   if(el && obj && okUrl(obj.src)){ el.src = obj.src; if(obj.alt) el.alt = obj.alt; }
@@ -612,7 +629,7 @@ async function hydratePhotos(){
     if(Array.isArray(d.portfolio) && d.portfolio.length){
       const grid = document.querySelector('.work-grid');
       grid.innerHTML = d.portfolio.filter(p => okUrl(p.image)).map((p,i) => `
-        <a class="g-card gc${i%3+1} rv tilt" href="${okUrl(p.link) ? esc(p.link) : 'https://selasievisualstudio.mypixieset.com'}" target="_blank" rel="noopener noreferrer">
+        <a class="g-card gc${i%3+1} rv tilt" href="${okUrl(p.link) ? esc(p.link) : 'gallery.html'}">
           <div class="frame wipe"><img src="${esc(p.image)}" alt="${esc(p.alt || p.title)}" loading="lazy"></div>
           <div class="g-veil"></div>
           <div class="g-info">
@@ -625,7 +642,7 @@ async function hydratePhotos(){
     if(Array.isArray(d.strip) && d.strip.length){
       const track = document.getElementById('strip');
       track.innerHTML = d.strip.filter(f => okUrl(f.image)).map(f => `
-        <a class="frame-card" href="${okUrl(f.link) ? esc(f.link) : 'https://selasievisualstudio.mypixieset.com'}" target="_blank" rel="noopener noreferrer">
+        <a class="frame-card" href="${okUrl(f.link) ? esc(f.link) : 'gallery.html'}">
           <img src="${esc(f.image)}" alt="${esc(f.alt)}" loading="lazy"></a>`).join('');
     }
   }catch(e){ /* offline/local preview — keep built-in photos */ }
