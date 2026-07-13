@@ -178,9 +178,16 @@
   .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;margin-top:50px}
   .svc{position:relative;display:block;border:1px solid var(--line);padding:44px 32px;overflow:hidden;isolation:isolate;transition:border-color .4s,transform .5s var(--ease)}
   .svc:hover{border-color:var(--gold);transform:translateY(-8px)}
-  .svc .svc-bg{position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .6s var(--ease)}
-  .svc .svc-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.3) saturate(.9)}
+  .svc .svc-bg{position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .7s var(--ease);overflow:hidden}
+  .svc .svc-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(1.02);transform:scale(1.14);transition:transform 1.6s var(--ease)}
+  .svc .svc-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,13,11,.92) 10%,rgba(15,13,11,.5) 55%,rgba(15,13,11,.28))}
   .svc:hover .svc-bg{opacity:1}
+  .svc:hover .svc-bg img{transform:scale(1.03)}
+  .svc:hover{color:#f3ede2}
+  .svc:hover h3{color:#fff}
+  .svc:hover p{color:#ded6c9}
+  .svc:hover .price,.svc:hover .svc-n{color:#e8c68c}
+  .svc:hover .svc-go{color:#e8c68c}
   .svc-n{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1rem}
   .svc h3{font-family:var(--serif);font-weight:500;font-size:1.65rem;margin:14px 0 6px;line-height:1.15}
   .svc .price{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:600}
