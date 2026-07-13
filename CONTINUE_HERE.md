@@ -10,7 +10,7 @@
 - Galleries are now LOCAL (gallery.html?g=slug reads data/galleries.json). Pixieset kept only for client full-res downloads.
 
 ## Patrick's standing requests (do these in order)
-1. **Finish the build**: on-site galleries + interludes are built locally — ensure ALL changed files are pushed to GitHub:
+1. DONE — all files pushed through commit "Fully own the site". Site is Pixieset-free (links); photos still load from Pixieset CDN as placeholders until Patrick adds local photos to photos/ folders.
    index.html, gallery.html (new), data/photos.json, data/galleries.json (new), admin/index.html (CSP fix), admin/config.yml (galleries collection), _headers (CSP moved to meta tags).
    Upload via GitHub web upload pages (/upload/main and /upload/main/<folder>) using Chrome, or GitHub connector if available.
 2. **Admin that maps photos to places**: DONE in config — /admin has "Website Photos" (hero, about, portfolio cards, film strip — each slot labelled) and "Galleries" (create gallery → drag photos in). Photos uploaded via admin land in images/uploads/. Explain this to Patrick as the "specified folder with defined variables".
