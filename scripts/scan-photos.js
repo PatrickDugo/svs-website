@@ -50,7 +50,8 @@ const photos = readJSON('data/photos.json') || {};
 const hero = images(P('photos', '1-hero'));
 if (hero.length) {
   photos.hero = { src: rel('1-hero', hero[0]), alt: nice(hero[0]) + ' — Selasie Visual Studio, Accra' };
-  changed.push('hero');
+  photos.hero_slides = hero.map(f => rel('1-hero', f));
+  changed.push('hero (' + hero.length + ' slide' + (hero.length > 1 ? 's' : '') + ')');
 }
 const about = images(P('photos', '2-about'));
 if (about.length) {

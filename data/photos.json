@@ -104,5 +104,8 @@
       "orientation": "portrait",
       "link": "gallery.html?g=mtn-ghana-masterclass"
     }
+  ],
+  "hero_slides": [
+    "photos/1-hero/Music.jpg"
   ]
 }

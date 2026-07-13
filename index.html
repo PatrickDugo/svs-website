@@ -667,6 +667,7 @@ async function hydratePhotos(){
     if(!r.ok) return;
     const d = await r.json();
     setImg('.hero-media img', d.hero);
+    if(Array.isArray(d.hero_slides)) window.__heroSlides = d.hero_slides.filter(okUrl);
     setImg('.about-media .main', d.about_main);
     setImg('.about-media .float img', d.about_float);
     if(Array.isArray(d.portfolio) && d.portfolio.length){
@@ -729,8 +730,10 @@ function initHeroSlideshow(){
   const media = document.querySelector('.hero-media');
   const base = media && media.querySelector('img');
   if(!base) return;
-  const extras = [...document.querySelectorAll('#strip img')].map(i => i.getAttribute('src'))
-    .filter(s => s && s !== base.getAttribute('src')).slice(0, 2);
+  const own = (window.__heroSlides || []).filter(s => s !== base.getAttribute('src'));
+  const extras = own.length ? own.slice(0, 3)
+    : [...document.querySelectorAll('#strip img')].map(i => i.getAttribute('src'))
+      .filter(s => s && s !== base.getAttribute('src')).slice(0, 2);
   if(!extras.length) return;
   const slides = [base];
   extras.forEach(src => {
