@@ -137,7 +137,7 @@ function applyTheme(t){
 applyTheme(document.documentElement.dataset.theme || 'dark');
 themeBtn.addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const okUrl = u => /^(https:\/\/|images\/|\/)/.test(String(u ?? ''));
+const okUrl = u => /^(https:\/\/|images\/|photos\/|\/)/.test(String(u ?? ''));
 let imgs = [], cur = 0;
 
 async function load(){

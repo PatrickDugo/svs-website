@@ -642,7 +642,7 @@ function wireVisuals(root){
 /* ═══ Photo hydration — reads data/photos.json (managed by the /admin panel).
    If the file is missing (e.g. previewing locally), the built-in photos above are shown. ═══ */
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const okUrl = u => /^(https:\/\/|images\/|data\/|gallery\.html|\/)/.test(String(u ?? ''));
+const okUrl = u => /^(https:\/\/|images\/|photos\/|data\/|gallery\.html|\/)/.test(String(u ?? ''));
 function setImg(sel, obj){
   const el = document.querySelector(sel);
   if(el && obj && okUrl(obj.src)){ el.src = obj.src; if(obj.alt) el.alt = obj.alt; }
