@@ -170,6 +170,13 @@
   .svc:hover .svc-go{color:var(--gold);gap:15px}
   .soon{margin-top:38px;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--dim)}
 
+  /* ═══ Interludes — full-bleed image breaks between sections ═══ */
+  .interlude{position:relative;height:clamp(340px,55vh,560px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0 24px}
+  .interlude .bg{position:absolute;inset:-12% 0;will-change:transform;z-index:0}
+  .interlude .bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.38) saturate(.92)}
+  .interlude q{position:relative;z-index:2;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.5rem,3.8vw,2.7rem);max-width:22ch;line-height:1.3;quotes:none}
+  .interlude q em{color:var(--gold);font-style:italic}
+
   /* ═══ Work — staggered editorial grid ═══ */
   .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2.5vw,32px);margin-top:56px;align-items:start}
   .g-card{position:relative;display:block;overflow:hidden;background:var(--panel);will-change:transform}
@@ -187,6 +194,7 @@
   .gc1{grid-column:1/7}.gc1 .frame{aspect-ratio:3/4}
   .gc2{grid-column:7/13;margin-top:clamp(50px,9vw,130px)}.gc2 .frame{aspect-ratio:4/5}
   .gc3{grid-column:3/11;margin-top:clamp(30px,5vw,70px)}.gc3 .frame{aspect-ratio:16/10}
+  .g-card .frame.land{aspect-ratio:16/10}.g-card .frame.port{aspect-ratio:3/4}
   @media(max-width:760px){
     .gc1,.gc2,.gc3{grid-column:1/13;margin-top:0}
     .gc2{margin-top:8px}.gc3{margin-top:8px}
@@ -203,6 +211,7 @@
   .strip-track::-webkit-scrollbar{display:none}
   .frame-card{flex:0 0 clamp(230px,26vw,330px);aspect-ratio:3/4;overflow:hidden;scroll-snap-align:start;position:relative;background:var(--panel)}
   .frame-card:nth-child(even){margin-top:34px}
+  .frame-card.land{flex:0 0 clamp(320px,40vw,470px);aspect-ratio:3/2}
   .frame-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:transform 1.1s var(--ease),filter .6s}
   .frame-card:hover img{transform:scale(1.07);filter:brightness(1)}
 
@@ -288,9 +297,9 @@
   </div>
   <div class="hero-veil"></div>
   <div class="hero-in">
-    <p class="loc hi d1">Selasie Visual Studio · Accra, Ghana</p>
-    <h1><span class="sr">Selasie Visual Studio — </span><span class="hi d2" style="display:block">Elegance,</span><em class="hi d3" style="display:block">Unbound.</em></h1>
-    <p class="lead hi d4">Refined photography &amp; videography for the moments that matter — weddings, events, brands and the people behind them.</p>
+    <p class="loc hi d1" id="heroKicker">Selasie Visual Studio · Accra, Ghana</p>
+    <h1><span class="sr">Selasie Visual Studio — </span><span class="hi d2" style="display:block" id="heroL1">Elegance,</span><em class="hi d3" style="display:block" id="heroL2">Unbound.</em></h1>
+    <p class="lead hi d4" id="heroLead">Refined photography &amp; videography for the moments that matter — weddings, events, brands and the people behind them.</p>
     <div class="hero-cta hi d5">
       <a href="https://selasievisualstudio.mypixieset.com" class="btn gold js-pixieset" target="_blank" rel="noopener noreferrer">View the galleries <span class="arr">→</span></a>
       <a href="#contact" class="btn">Book a session</a>
@@ -313,10 +322,10 @@
   <div class="about-grid">
     <div class="about-copy rv">
       <p class="eyebrow">The studio</p>
-      <h2 class="h2">Considered, <em>unhurried</em> imagery</h2>
-      <p class="first">We're drawn to the moments you'd otherwise forget — the glance, the gathering, the small detail — and we shape them into images that feel as alive as the day they happened.</p>
-      <p>Founded by Patrick Selasie Dugo and built as a collaborative practice, Selasie Visual Studio works closely with you before a single frame is made: your story, your pace, your light.</p>
-      <p>Every gallery is finished in our signature style and delivered privately — images made to be lived with, returned to, and loved long after the day has passed.</p>
+      <h2 class="h2" id="aboutHead">Considered, <em>unhurried</em> imagery</h2>
+      <p class="first" id="aboutP1">We're drawn to the moments you'd otherwise forget — the glance, the gathering, the small detail — and we shape them into images that feel as alive as the day they happened.</p>
+      <p id="aboutP2">Founded by Patrick Selasie Dugo and built as a collaborative practice, Selasie Visual Studio works closely with you before a single frame is made: your story, your pace, your light.</p>
+      <p id="aboutP3">Every gallery is finished in our signature style and delivered privately — images made to be lived with, returned to, and loved long after the day has passed.</p>
       <a class="tlink" href="#services">What we do <span class="arr">→</span></a>
     </div>
     <div class="about-media rv">
@@ -327,7 +336,7 @@
 </div></section>
 
 <section class="stats" aria-label="Studio in numbers"><div class="wrap">
-  <div class="stat-grid">
+  <div class="stat-grid" id="statGrid">
     <!-- EDIT these numbers to your real figures -->
     <div class="rv"><div class="stat-n" data-target="150" data-suffix="+">0</div><div class="stat-l">Moments captured</div></div>
     <div class="rv"><div class="stat-n" data-target="60" data-suffix="+">0</div><div class="stat-l">Happy clients</div></div>
@@ -336,10 +345,15 @@
   </div>
 </div></section>
 
+<div class="interlude" aria-hidden="true">
+  <div class="bg" data-plx="0.14"><img src="https://images-pw.pixieset.com/site/BydGR0/9zq3me/_DSC0884-939c66fa-1500.jpg" alt="" loading="lazy"></div>
+  <q>Every frame, a feeling <em>kept.</em></q>
+</div>
+
 <section id="services" class="services"><div class="wrap">
   <p class="eyebrow rv">What we do</p>
   <h2 class="h2 rv">Services</h2>
-  <div class="svc-grid">
+  <div class="svc-grid" id="svcGrid">
     <a class="svc rv" href="#contact">
       <div class="svc-bg"><img src="https://images-pw.pixieset.com/site/BydGR0/QymnKW/_DSC9951-c776dcf4-1500.jpeg" alt="" loading="lazy"></div>
       <span class="svc-n">01</span><h3>Brand &amp; Content</h3><div class="price">from GHS 1,500</div><p>Restaurant and brand imagery that makes people stop scrolling — half-day shoots, monthly retainers available.</p><span class="svc-go">Book this →</span></a>
@@ -353,7 +367,7 @@
       <div class="svc-bg"><img src="https://images-pw.pixieset.com/site/BydGR0/QymbME/_DSC0606-09c93b44-1500.jpg" alt="" loading="lazy"></div>
       <span class="svc-n">04</span><h3>Weddings</h3><div class="price">from GHS 8,000</div><p>Your day, captured with care — timeless coverage, 300+ images, film and album add-ons.</p><span class="svc-go">Book this →</span></a>
   </div>
-  <p class="soon rv">Coming soon — hybrid wedding films &amp; 360° virtual tours</p>
+  <p class="soon rv" id="soonLine">Coming soon — hybrid wedding films &amp; 360° virtual tours</p>
 </div></section>
 
 <section id="work" class="work"><div class="wrap">
@@ -362,7 +376,7 @@
   <div class="work-grid">
 
     <!-- GALLERY CARD 1 -->
-    <a class="g-card gc1 rv tilt js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-1/" target="_blank" rel="noopener noreferrer">
+    <a class="g-card gc1 rv tilt" href="gallery.html?g=julius-debrah-60th">
       <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/RQOYGj/_DSC0710-55c32621-1500.jpg" alt="Hon. Julius Debrah 60th birthday celebration — event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
@@ -373,7 +387,7 @@
     </a>
 
     <!-- GALLERY CARD 2 -->
-    <a class="g-card gc2 rv tilt js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-2/" target="_blank" rel="noopener noreferrer">
+    <a class="g-card gc2 rv tilt" href="gallery.html?g=director-ash">
       <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/K6VmP1/_DSC1136-9622d749-1500.jpg" alt="Director Ash portrait session at Kicks and Clothes Temple — portrait photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
@@ -384,7 +398,7 @@
     </a>
 
     <!-- GALLERY CARD 3 -->
-    <a class="g-card gc3 rv tilt js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-3/" target="_blank" rel="noopener noreferrer">
+    <a class="g-card gc3 rv tilt" href="gallery.html?g=mtn-masterclass">
       <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/QymnKW/_DSC9951-c776dcf4-1500.jpeg" alt="MTN Ghana Wealth and Wellness Masterclass — corporate event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
@@ -405,12 +419,12 @@
     <span class="hint rv">Drag / scroll →</span>
   </div>
   <div class="strip-track" id="strip">
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-1/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg" alt="Celebration moment photographed by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-2/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/rDPALR/_DSC1129-6a492a64-1500.jpg" alt="Portrait frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-3/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/abJ0mQ/_DSC9899-66b39ae4-1500.jpeg" alt="Corporate masterclass frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-1/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/M7nz01/_DSC0876-19dec795-1500.jpg" alt="Guests at a milestone celebration by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-2/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/3kq493/_DSC1139-63aa668c-1500.jpg" alt="Studio portrait frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card js-pixieset" href="https://selasievisualstudio.mypixieset.com/gallery-3/" target="_blank" rel="noopener noreferrer"><img src="https://images-pw.pixieset.com/site/BydGR0/Z15JPM/_DSC9469-73a67cf3-1500.jpeg" alt="Keynote moment at MTN Ghana masterclass by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=julius-debrah-60th"><img src="https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg" alt="Celebration moment photographed by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=director-ash"><img src="https://images-pw.pixieset.com/site/BydGR0/rDPALR/_DSC1129-6a492a64-1500.jpg" alt="Portrait frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=mtn-masterclass"><img src="https://images-pw.pixieset.com/site/BydGR0/abJ0mQ/_DSC9899-66b39ae4-1500.jpeg" alt="Corporate masterclass frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=julius-debrah-60th"><img src="https://images-pw.pixieset.com/site/BydGR0/M7nz01/_DSC0876-19dec795-1500.jpg" alt="Guests at a milestone celebration by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=director-ash"><img src="https://images-pw.pixieset.com/site/BydGR0/3kq493/_DSC1139-63aa668c-1500.jpg" alt="Studio portrait frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=mtn-masterclass"><img src="https://images-pw.pixieset.com/site/BydGR0/Z15JPM/_DSC9469-73a67cf3-1500.jpeg" alt="Keynote moment at MTN Ghana masterclass by Selasie Visual Studio" loading="lazy"></a>
   </div>
 </section>
 
@@ -436,10 +450,15 @@
   <div class="dots" id="dots" role="tablist" aria-label="Choose testimonial"></div>
 </div></section>
 
+<div class="interlude" aria-hidden="true">
+  <div class="bg" data-plx="0.14"><img src="https://images-pw.pixieset.com/site/BydGR0/1VqnWa/_DSC9804-6d2c5ce9-1500.jpeg" alt="" loading="lazy"></div>
+  <q>Light. Story. <em>Craft.</em></q>
+</div>
+
 <section id="pricing" class="pricing"><div class="wrap">
   <p class="eyebrow rv">Investment</p>
   <h2 class="h2 rv">Pricing</h2>
-  <div class="rv">
+  <div class="rv" id="priceWrap">
     <div class="price-row"><span>Brand &amp; Content</span><b>from GHS 1,500</b></div>
     <div class="price-row"><span>Corporate &amp; Headshots</span><b>from GHS 2,500</b></div>
     <div class="price-row"><span>Events &amp; Celebrations</span><b>from GHS 3,500</b></div>
@@ -450,8 +469,8 @@
 
 <section id="contact" class="contact"><div class="wrap rv">
   <p class="eyebrow" style="justify-content:center">Let's create</p>
-  <h2 class="h2 xl">Let's make something<br><em>beautiful.</em></h2>
-  <p class="sub">Tell us about your shoot — we reply fast. A 50% deposit secures your date.</p>
+  <h2 class="h2 xl"><span id="ctL1">Let's make something</span><br><em id="ctL2">beautiful.</em></h2>
+  <p class="sub" id="ctSub">Tell us about your shoot — we reply fast. A 50% deposit secures your date.</p>
   <div class="contact-links">
     <a class="btn gold js-wa" href="https://wa.me/233554637307" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
     <a class="btn js-call" href="tel:+233554637307">Call +233 55 463 7307</a>
@@ -596,7 +615,7 @@ function wireVisuals(root){
 /* ═══ Photo hydration — reads data/photos.json (managed by the /admin panel).
    If the file is missing (e.g. previewing locally), the built-in photos above are shown. ═══ */
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const okUrl = u => /^(https:\/\/|images\/|data\/|\/)/.test(String(u ?? ''));
+const okUrl = u => /^(https:\/\/|images\/|data\/|gallery\.html|\/)/.test(String(u ?? ''));
 function setImg(sel, obj){
   const el = document.querySelector(sel);
   if(el && obj && okUrl(obj.src)){ el.src = obj.src; if(obj.alt) el.alt = obj.alt; }
@@ -612,8 +631,8 @@ async function hydratePhotos(){
     if(Array.isArray(d.portfolio) && d.portfolio.length){
       const grid = document.querySelector('.work-grid');
       grid.innerHTML = d.portfolio.filter(p => okUrl(p.image)).map((p,i) => `
-        <a class="g-card gc${i%3+1} rv tilt" href="${okUrl(p.link) ? esc(p.link) : 'https://selasievisualstudio.mypixieset.com'}" target="_blank" rel="noopener noreferrer">
-          <div class="frame wipe"><img src="${esc(p.image)}" alt="${esc(p.alt || p.title)}" loading="lazy"></div>
+        <a class="g-card gc${i%3+1} rv tilt" href="${okUrl(p.link) ? esc(p.link) : 'gallery.html'}">
+          <div class="frame wipe${p.orientation==='landscape' ? ' land' : (p.orientation==='portrait' ? ' port' : '')}"><img src="${esc(p.image)}" alt="${esc(p.alt || p.title)}" loading="lazy"></div>
           <div class="g-veil"></div>
           <div class="g-info">
             <div class="g-cat">${esc(p.category)}</div>
@@ -625,12 +644,46 @@ async function hydratePhotos(){
     if(Array.isArray(d.strip) && d.strip.length){
       const track = document.getElementById('strip');
       track.innerHTML = d.strip.filter(f => okUrl(f.image)).map(f => `
-        <a class="frame-card" href="${okUrl(f.link) ? esc(f.link) : 'https://selasievisualstudio.mypixieset.com'}" target="_blank" rel="noopener noreferrer">
+        <a class="frame-card${f.orientation==='landscape' ? ' land' : ''}" href="${okUrl(f.link) ? esc(f.link) : 'gallery.html'}">
           <img src="${esc(f.image)}" alt="${esc(f.alt)}" loading="lazy"></a>`).join('');
     }
   }catch(e){ /* offline/local preview — keep built-in photos */ }
 }
-hydratePhotos().then(() => wireVisuals(document));
+/* ═══ Page text hydration — reads data/site.json (edited in /admin → Page text) ═══ */
+async function hydrateText(){
+  try{
+    const r = await fetch('data/site.json', {cache:'no-store'});
+    if(!r.ok) return;
+    const d = await r.json();
+    const T = (id,v) => { const el = document.getElementById(id); if(el && v) el.textContent = v; };
+    if(d.hero){ T('heroKicker',d.hero.kicker); T('heroL1',d.hero.line1); T('heroL2',d.hero.line2); T('heroLead',d.hero.lead); }
+    if(d.about){
+      const hd = document.getElementById('aboutHead');
+      if(hd && d.about.heading){ const w = esc(d.about.heading).trim().split(' '); const last = w.pop(); hd.innerHTML = (w.length ? w.join(' ') + ' ' : '') + '<em>' + last + '</em>'; }
+      T('aboutP1',d.about.p1); T('aboutP2',d.about.p2); T('aboutP3',d.about.p3);
+    }
+    if(Array.isArray(d.stats) && d.stats.length){
+      document.getElementById('statGrid').innerHTML = d.stats.map(s => `
+        <div class="rv"><div class="stat-n" data-target="${+s.number || 0}" data-suffix="${esc(s.suffix || '')}">0</div><div class="stat-l">${esc(s.label || '')}</div></div>`).join('');
+    }
+    if(Array.isArray(d.services) && d.services.length){
+      document.getElementById('svcGrid').innerHTML = d.services.map((s,i) => `
+        <a class="svc rv" href="#contact">
+          ${okUrl(s.image) ? `<div class="svc-bg"><img src="${esc(s.image)}" alt="" loading="lazy"></div>` : ''}
+          <span class="svc-n">0${i+1}</span><h3>${esc(s.title)}</h3><div class="price">${esc(s.price || '')}</div><p>${esc(s.text || '')}</p><span class="svc-go">Book this →</span></a>`).join('');
+      const pw = document.getElementById('priceWrap');
+      if(pw) pw.innerHTML = d.services.map(s => `<div class="price-row"><span>${esc(s.title)}</span><b>${esc(s.price || '')}</b></div>`).join('')
+        + `<p class="price-terms">${esc(d.pricing_terms || '')}</p>`;
+    }
+    T('soonLine', d.coming_soon);
+    if(Array.isArray(d.testimonials) && d.testimonials.length){
+      document.querySelector('.quote').innerHTML = d.testimonials.map((q,i) => `
+        <div class="q${i===0 ? ' on' : ''}"><p>“${esc(q.quote)}”</p><cite>${esc(q.name || '')}</cite></div>`).join('');
+    }
+    if(d.contact){ T('ctL1',d.contact.line1); T('ctL2',d.contact.line2); T('ctSub',d.contact.sub); }
+  }catch(e){ /* local preview — keep built-in text */ }
+}
+Promise.all([hydratePhotos(), hydrateText()]).then(() => { wireVisuals(document); initCarousel(); });
 
 /* Film strip — drag to scroll */
 const strip = document.getElementById('strip');
@@ -647,22 +700,27 @@ if(strip){
   strip.addEventListener('click', e => { if(moved){ e.preventDefault(); } }, true);
 }
 
-/* Testimonial carousel */
-const qs = [...document.querySelectorAll('.q')], dots = document.getElementById('dots');
-let qi = 0, qt;
-qs.forEach((_,i) => {
-  const b = document.createElement('button');
-  b.setAttribute('role','tab'); b.setAttribute('aria-label','Testimonial '+(i+1));
-  if(i===0) b.classList.add('on');
-  b.addEventListener('click', () => { show(i); reset(); });
-  dots.appendChild(b);
-});
-function show(i){
-  qs[qi].classList.remove('on'); dots.children[qi].classList.remove('on');
-  qi = i; qs[qi].classList.add('on'); dots.children[qi].classList.add('on');
+/* Testimonial carousel (re-initialized after admin text loads) */
+let qt;
+function initCarousel(){
+  const qs = [...document.querySelectorAll('.q')], dots = document.getElementById('dots');
+  if(!qs.length || !dots) return;
+  let qi = 0;
+  dots.innerHTML = '';
+  const show = i => {
+    qs[qi].classList.remove('on'); dots.children[qi].classList.remove('on');
+    qi = i; qs[qi].classList.add('on'); dots.children[qi].classList.add('on');
+  };
+  const reset = () => { clearInterval(qt); qt = setInterval(() => show((qi+1)%qs.length), 6500); };
+  qs.forEach((_,i) => {
+    const b = document.createElement('button');
+    b.setAttribute('role','tab'); b.setAttribute('aria-label','Testimonial '+(i+1));
+    if(i===0) b.classList.add('on');
+    b.addEventListener('click', () => { show(i); reset(); });
+    dots.appendChild(b);
+  });
+  reset();
 }
-function reset(){ clearInterval(qt); qt = setInterval(() => show((qi+1)%qs.length), 6500); }
-reset();
 
 /* Year */
 document.getElementById('yr').textContent = new Date().getFullYear();
