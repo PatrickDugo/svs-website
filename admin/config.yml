@@ -2,7 +2,7 @@
 # Backend: Netlify Git Gateway (activate in Netlify: Identity + Git Gateway)
 backend:
   name: git-gateway
-  branch: master
+  branch: main
 
 # Where uploaded photos are stored in the repository
 media_folder: "images/uploads"
