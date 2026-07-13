@@ -1,0 +1,4 @@
+# Netlify build configuration for Selasie Visual Studio
+[build]
+  command = "node scripts/scan-photos.js"
+  publish = "."
