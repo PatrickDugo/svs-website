@@ -12,43 +12,68 @@
     "p3": "Every gallery is finished in our signature style and delivered privately — images made to be lived with, returned to, and loved long after the day has passed."
   },
   "stats": [
-    { "number": 150, "suffix": "+", "label": "Moments captured" },
-    { "number": 60, "suffix": "+", "label": "Happy clients" },
-    { "number": 48, "suffix": "hr", "label": "Fastest delivery" },
-    { "number": 5, "suffix": "★", "label": "Service rating" }
+    {
+      "number": 150,
+      "suffix": "+",
+      "label": "Moments captured"
+    },
+    {
+      "number": 60,
+      "suffix": "+",
+      "label": "Happy clients"
+    },
+    {
+      "number": 48,
+      "suffix": "hr",
+      "label": "Fastest delivery"
+    },
+    {
+      "number": 5,
+      "suffix": "★",
+      "label": "Service rating"
+    }
   ],
   "services": [
     {
       "title": "Brand & Content",
       "price": "from GHS 1,500",
       "text": "Restaurant and brand imagery that makes people stop scrolling — half-day shoots, monthly retainers available.",
-      "image": "https://images-pw.pixieset.com/site/BydGR0/QymnKW/_DSC9951-c776dcf4-1500.jpeg"
+      "image": "photos/3-services/1.JPG"
     },
     {
       "title": "Corporate & Headshots",
       "price": "from GHS 2,500",
       "text": "Headshots and workplace photography that make your team look like themselves — at their very best.",
-      "image": "https://images-pw.pixieset.com/site/BydGR0/K6VyGA/_DSC9683-057b8e99-1500.jpeg"
+      "image": "photos/3-services/2.JPG"
     },
     {
       "title": "Events & Celebrations",
       "price": "from GHS 3,500",
       "text": "Birthdays, launches and milestones — the candid in-between moments and every key set-piece.",
-      "image": "https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg"
+      "image": "photos/3-services/3.jpg"
     },
     {
       "title": "Weddings",
       "price": "from GHS 8,000",
       "text": "Your day, captured with care — timeless coverage, 300+ images, film and album add-ons.",
-      "image": "https://images-pw.pixieset.com/site/BydGR0/QymbME/_DSC0606-09c93b44-1500.jpg"
+      "image": "photos/3-services/4.jpg"
     }
   ],
   "coming_soon": "Coming soon — hybrid wedding films & 360° virtual tours",
   "pricing_terms": "A 50% non-refundable deposit secures your date · balance before delivery · private online gallery for 30 days · full terms apply.",
   "testimonials": [
-    { "quote": "They didn't just take photos — they captured exactly how the day felt. We look at the gallery and we're right back there.", "name": "— EDIT: a real client" },
-    { "quote": "Professional, calm, and the images are stunning. Our brand finally looks the way it should online.", "name": "— EDIT: a brand client" },
-    { "quote": "Fast delivery, beautiful edits, and a genuine pleasure to work with. Booking again.", "name": "— EDIT: a happy client" }
+    {
+      "quote": "They didn't just take photos — they captured exactly how the day felt. We look at the gallery and we're right back there.",
+      "name": "— EDIT: a real client"
+    },
+    {
+      "quote": "Professional, calm, and the images are stunning. Our brand finally looks the way it should online.",
+      "name": "— EDIT: a brand client"
+    },
+    {
+      "quote": "Fast delivery, beautiful edits, and a genuine pleasure to work with. Booking again.",
+      "name": "— EDIT: a happy client"
+    }
   ],
   "contact": {
     "line1": "Let's make something",
