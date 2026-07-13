@@ -124,7 +124,6 @@ collections:
               - { label: "Category (Events / Portraits / Weddings…)", name: "category", widget: "string" }
               - { label: "Short description", name: "description", widget: "text", required: false }
               - { label: "Cover image", name: "cover", widget: "image" }
-              - { label: "Pixieset link for client downloads (optional)", name: "pixieset", widget: "string", required: false }
               - label: "Photos"
                 name: "images"
                 widget: "list"

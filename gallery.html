@@ -6,6 +6,7 @@
 <title>Gallery — Selasie Visual Studio</title>
 <meta name="description" content="Selected photography galleries by Selasie Visual Studio, Accra, Ghana.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('svs-theme')||'dark'}catch(e){}</script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images-pw.pixieset.com blob: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <link rel="icon" href="images/logo-dark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +21,15 @@
     --sans:'Manrope',-apple-system,sans-serif;
     --ease:cubic-bezier(.16,1,.3,1);
   }
+  html[data-theme="light"]{
+    --bg:#f7f3ec; --bg2:#f1ebdf; --panel:#ffffff;
+    --ink:#2c2620; --dim:#857868; --line:rgba(44,38,32,.14);
+    --gold:#a5793f;
+  }
+  .theme-btn{background:none;border:1px solid var(--line);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.95rem;line-height:1;transition:border-color .3s,color .3s}
+  .theme-btn:hover{border-color:var(--gold);color:var(--gold)}
+  html[data-theme="light"] nav{background:rgba(247,243,236,.9)}
+  html[data-theme="light"] #lb{background:rgba(247,243,236,.97)}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
@@ -84,8 +94,8 @@
 <body>
 
 <nav><div class="nav-in">
-  <a href="index.html" class="nav-brand"><img src="images/logo-white.png" alt=""><span>SELASIE&nbsp;VISUAL&nbsp;STUDIO</span></a>
-  <a href="index.html#work" class="back">← Back to portfolio</a>
+  <a href="index.html" class="nav-brand"><img class="js-logo" src="images/logo-white.png" alt=""><span>SELASIE&nbsp;VISUAL&nbsp;STUDIO</span></a>
+  <span style="display:flex;align-items:center;gap:18px"><button class="theme-btn" id="themeBtn" aria-label="Switch between light and dark mode">☀</button><a href="index.html#work" class="back">← Back to portfolio</a></span>
 </div></nav>
 
 <header>
@@ -102,7 +112,7 @@
   <p>Let's create something like this for you — tell us about your shoot and we'll reply fast.</p>
   <a class="btn gold" href="index.html#contact">Book a session</a>
   <a class="btn" href="index.html#work">More galleries</a>
-  <p class="client-note">Are you a client from this shoot? <a id="gPixieset" href="https://selasievisualstudio.mypixieset.com" target="_blank" rel="noopener noreferrer">Download your full-resolution photos here</a>.</p>
+
 </section>
 
 <footer>© <span id="yr"></span> Selasie Visual Studio · Photography &amp; Videography · Accra, Ghana</footer>
@@ -117,6 +127,15 @@
 
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
+const themeBtn = document.getElementById('themeBtn');
+function applyTheme(t){
+  document.documentElement.dataset.theme = t;
+  themeBtn.textContent = t === 'light' ? '☾' : '☀';
+  document.querySelectorAll('.js-logo').forEach(i => { i.src = t === 'light' ? 'images/logo-dark.png' : 'images/logo-white.png'; });
+  try{ localStorage.setItem('svs-theme', t); }catch(e){}
+}
+applyTheme(document.documentElement.dataset.theme || 'dark');
+themeBtn.addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const okUrl = u => /^(https:\/\/|images\/|\/)/.test(String(u ?? ''));
 let imgs = [], cur = 0;
@@ -134,7 +153,6 @@ async function load(){
     document.getElementById('gDesc').textContent = g.description || '';
     imgs = (g.images || []).filter(i => okUrl(i.src));
     document.getElementById('gCount').textContent = imgs.length + ' photographs';
-    if(g.pixieset) document.getElementById('gPixieset').href = g.pixieset;
     const grid = document.getElementById('grid');
     grid.innerHTML = imgs.map((im,i) => `
       <div class="m-item" data-i="${i}" role="button" tabindex="0" aria-label="Open image ${i+1}">
