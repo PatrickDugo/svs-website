@@ -27,3 +27,9 @@
 - Owner: Patrick Selasie Dugo, Selasie Visual Studio, Accra, Ghana. Contact +233554637307, selasievisualstudio@gmail.com.
 - Design: dark editorial (espresso #0f0d0b + gold #d2a35d), Cormorant Garamond + Manrope, "Elegance, Unbound".
 - Old ivory design backed up at index-ivory-backup.html. Never use pure black. Don't invent testimonials/stats/prices.
+
+## ⚠️ UNPUSHED LOCAL WORK (committed locally, Patrick said do NOT push yet)
+Commit "Roadmap batch 1" contains: hero crossfade slideshow, interlude/gallery-band images now Patrick's own,
+Pixieset fully removed from CSP + all fallback markup, dark-mode polish (brighter dim text, card shadows),
+404.html, gallery.html "Next gallery" link. Push when Patrick approves: index.html, gallery.html, 404.html (new), CONTINUE_HERE.md.
+Already pushed separately: brighter service-card hover photos.

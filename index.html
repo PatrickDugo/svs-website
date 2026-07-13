@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#0f0d0b">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('svs-theme')||'dark'}catch(e){}</script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images-pw.pixieset.com blob: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 
 <!-- Social sharing -->
 <meta property="og:type" content="website">
@@ -40,7 +40,7 @@
 <style>
   :root{
     --bg:#0f0d0b; --bg2:#151210; --panel:#1c1815;
-    --ink:#f3ede2; --dim:#a99f91; --line:rgba(243,237,226,.09);
+    --ink:#f5efe4; --dim:#b3a99b; --line:rgba(243,237,226,.12);
     --gold:#d2a35d; --gold-soft:rgba(210,163,93,.16);
     --serif:'Cormorant Garamond',Georgia,serif;
     --sans:'Manrope',-apple-system,sans-serif;
@@ -120,7 +120,8 @@
   /* ═══ Hero ═══ */
   .hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;padding:0}
   .hero-media{position:absolute;inset:-8% 0;will-change:transform}
-  .hero-media img{width:100%;height:100%;object-fit:cover;filter:brightness(.52) saturate(.95) contrast(1.02);animation:heroIn 2.2s var(--ease) forwards;transform:scale(1.12)}
+  .hero-media img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:brightness(.52) saturate(.95) contrast(1.02);animation:heroIn 2.2s var(--ease) forwards;transform:scale(1.12);transition:opacity 2.2s var(--ease)}
+  .hero-media img.off{opacity:0}
   @keyframes heroIn{to{transform:scale(1)}}
   .hero-veil{position:absolute;inset:0;background:
     radial-gradient(120% 90% at 50% 110%,rgba(15,13,11,.92) 20%,transparent 60%),
@@ -195,6 +196,12 @@
   .svc-go{display:inline-flex;align-items:center;gap:9px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);font-weight:600;transition:color .3s,gap .3s}
   .svc:hover .svc-go{color:var(--gold);gap:15px}
   .soon{margin-top:38px;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--dim)}
+
+  .g-card:hover{box-shadow:0 32px 70px rgba(0,0,0,.55)}
+  .svc:hover{box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  html[data-theme="light"] .g-card:hover{box-shadow:0 32px 70px rgba(44,38,32,.28)}
+  html[data-theme="light"] .svc:hover{box-shadow:0 24px 60px rgba(44,38,32,.22)}
+  nav.scrolled{box-shadow:0 12px 40px rgba(0,0,0,.3)}
 
   /* ═══ Interludes — full-bleed image breaks between sections ═══ */
   .interlude{position:relative;height:clamp(340px,55vh,560px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0 24px}
@@ -320,7 +327,7 @@
 
 <header class="hero" id="top">
   <div class="hero-media" data-plx="0.18">
-    <img src="https://images-pw.pixieset.com/site/BydGR0/Z1Vy0m/_DSC0846-1e7d8526-1500.jpeg" alt="Live band performing at a celebration photographed by Selasie Visual Studio in Accra, Ghana" fetchpriority="high">
+    <img src="photos/1-hero/Music.jpg" alt="Live band performing at a celebration photographed by Selasie Visual Studio in Accra, Ghana" fetchpriority="high">
   </div>
   <div class="hero-veil"></div>
   <div class="hero-in">
@@ -356,8 +363,8 @@
       <a class="tlink" href="#services">What we do <span class="arr">→</span></a>
     </div>
     <div class="about-media rv">
-      <div class="wipe"><img class="main" src="https://images-pw.pixieset.com/site/BydGR0/LMwO41/_DSC0939-325920ea-1500.jpg" alt="Guests celebrating at an event covered by Selasie Visual Studio in Accra" loading="lazy"></div>
-      <div class="float" data-plx="-0.06"><img src="https://images-pw.pixieset.com/site/BydGR0/K6VmP1/_DSC1136-9622d749-1500.jpg" alt="Portrait of Director Ash by Selasie Visual Studio" loading="lazy"></div>
+      <div class="wipe"><img class="main" src="photos/2-about/Happy.jpg" alt="Guests celebrating at an event covered by Selasie Visual Studio in Accra" loading="lazy"></div>
+      <div class="float" data-plx="-0.06"><img src="photos/2-about/party.jpg" alt="Portrait of Director Ash by Selasie Visual Studio" loading="lazy"></div>
     </div>
   </div>
 </div></section>
@@ -373,7 +380,7 @@
 </div></section>
 
 <div class="interlude" aria-hidden="true">
-  <div class="bg" data-plx="0.14"><img src="https://images-pw.pixieset.com/site/BydGR0/9zq3me/_DSC0884-939c66fa-1500.jpg" alt="" loading="lazy"></div>
+  <div class="bg" data-plx="0.14"><img src="photos/4-film-strip/File 3.jpg" alt="" loading="lazy"></div>
   <q>Every frame, a feeling <em>kept.</em></q>
 </div>
 
@@ -382,16 +389,16 @@
   <h2 class="h2 rv">Services</h2>
   <div class="svc-grid" id="svcGrid">
     <a class="svc rv" href="#contact">
-      <div class="svc-bg"><img src="https://images-pw.pixieset.com/site/BydGR0/QymnKW/_DSC9951-c776dcf4-1500.jpeg" alt="" loading="lazy"></div>
+      <div class="svc-bg"><img src="photos/3-services/1.JPG" alt="" loading="lazy"></div>
       <span class="svc-n">01</span><h3>Brand &amp; Content</h3><div class="price">from GHS 1,500</div><p>Restaurant and brand imagery that makes people stop scrolling — half-day shoots, monthly retainers available.</p><span class="svc-go">Book this →</span></a>
     <a class="svc rv" href="#contact">
-      <div class="svc-bg"><img src="https://images-pw.pixieset.com/site/BydGR0/K6VyGA/_DSC9683-057b8e99-1500.jpeg" alt="" loading="lazy"></div>
+      <div class="svc-bg"><img src="photos/3-services/2.JPG" alt="" loading="lazy"></div>
       <span class="svc-n">02</span><h3>Corporate &amp; Headshots</h3><div class="price">from GHS 2,500</div><p>Headshots and workplace photography that make your team look like themselves — at their very best.</p><span class="svc-go">Book this →</span></a>
     <a class="svc rv" href="#contact">
-      <div class="svc-bg"><img src="https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg" alt="" loading="lazy"></div>
+      <div class="svc-bg"><img src="photos/3-services/3.jpg" alt="" loading="lazy"></div>
       <span class="svc-n">03</span><h3>Events &amp; Celebrations</h3><div class="price">from GHS 3,500</div><p>Birthdays, launches and milestones — the candid in-between moments and every key set-piece.</p><span class="svc-go">Book this →</span></a>
     <a class="svc rv" href="#contact">
-      <div class="svc-bg"><img src="https://images-pw.pixieset.com/site/BydGR0/QymbME/_DSC0606-09c93b44-1500.jpg" alt="" loading="lazy"></div>
+      <div class="svc-bg"><img src="photos/3-services/4.jpg" alt="" loading="lazy"></div>
       <span class="svc-n">04</span><h3>Weddings</h3><div class="price">from GHS 8,000</div><p>Your day, captured with care — timeless coverage, 300+ images, film and album add-ons.</p><span class="svc-go">Book this →</span></a>
   </div>
   <p class="soon rv" id="soonLine">Coming soon — hybrid wedding films &amp; 360° virtual tours</p>
@@ -403,8 +410,8 @@
   <div class="work-grid">
 
     <!-- GALLERY CARD 1 -->
-    <a class="g-card gc1 rv tilt" href="gallery.html?g=julius-debrah-60th">
-      <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/RQOYGj/_DSC0710-55c32621-1500.jpg" alt="Hon. Julius Debrah 60th birthday celebration — event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
+    <a class="g-card gc1 rv tilt" href="gallery.html?g=julius-debrah-60th-birthday">
+      <div class="frame wipe"><img src="photos/galleries/Events/Julius Debrah 60th Birthday/File 1.jpg" alt="Hon. Julius Debrah 60th birthday celebration — event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
         <div class="g-cat">Events</div>
@@ -415,7 +422,7 @@
 
     <!-- GALLERY CARD 2 -->
     <a class="g-card gc2 rv tilt" href="gallery.html?g=director-ash">
-      <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/K6VmP1/_DSC1136-9622d749-1500.jpg" alt="Director Ash portrait session at Kicks and Clothes Temple — portrait photography in Accra by Selasie Visual Studio" loading="lazy"></div>
+      <div class="frame wipe"><img src="photos/galleries/Portraits/Director Ash/File 1.jpg" alt="Director Ash portrait session at Kicks and Clothes Temple — portrait photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
         <div class="g-cat">Portraits</div>
@@ -425,8 +432,8 @@
     </a>
 
     <!-- GALLERY CARD 3 -->
-    <a class="g-card gc3 rv tilt" href="gallery.html?g=mtn-masterclass">
-      <div class="frame wipe"><img src="https://images-pw.pixieset.com/site/BydGR0/QymnKW/_DSC9951-c776dcf4-1500.jpeg" alt="MTN Ghana Wealth and Wellness Masterclass — corporate event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
+    <a class="g-card gc3 rv tilt" href="gallery.html?g=mtn-ghana-masterclass">
+      <div class="frame wipe"><img src="photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 1.JPG" alt="MTN Ghana Wealth and Wellness Masterclass — corporate event photography in Accra by Selasie Visual Studio" loading="lazy"></div>
       <div class="g-veil"></div>
       <div class="g-info">
         <div class="g-cat">Brands &amp; Corporate</div>
@@ -446,17 +453,17 @@
     <span class="hint rv">Drag / scroll →</span>
   </div>
   <div class="strip-track" id="strip">
-    <a class="frame-card" href="gallery.html?g=julius-debrah-60th"><img src="https://images-pw.pixieset.com/site/BydGR0/0Yq4Wv/_DSC0777-f7ca0cfc-1500.jpg" alt="Celebration moment photographed by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card" href="gallery.html?g=director-ash"><img src="https://images-pw.pixieset.com/site/BydGR0/rDPALR/_DSC1129-6a492a64-1500.jpg" alt="Portrait frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card" href="gallery.html?g=mtn-masterclass"><img src="https://images-pw.pixieset.com/site/BydGR0/abJ0mQ/_DSC9899-66b39ae4-1500.jpeg" alt="Corporate masterclass frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card" href="gallery.html?g=julius-debrah-60th"><img src="https://images-pw.pixieset.com/site/BydGR0/M7nz01/_DSC0876-19dec795-1500.jpg" alt="Guests at a milestone celebration by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card" href="gallery.html?g=director-ash"><img src="https://images-pw.pixieset.com/site/BydGR0/3kq493/_DSC1139-63aa668c-1500.jpg" alt="Studio portrait frame by Selasie Visual Studio" loading="lazy"></a>
-    <a class="frame-card" href="gallery.html?g=mtn-masterclass"><img src="https://images-pw.pixieset.com/site/BydGR0/Z15JPM/_DSC9469-73a67cf3-1500.jpeg" alt="Keynote moment at MTN Ghana masterclass by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=julius-debrah-60th-birthday"><img src="photos/4-film-strip/File 1.jpg" alt="Celebration moment photographed by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=director-ash"><img src="photos/4-film-strip/File 2.jpg" alt="Portrait frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=mtn-ghana-masterclass"><img src="photos/4-film-strip/File 3.jpg" alt="Corporate masterclass frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=julius-debrah-60th-birthday"><img src="photos/4-film-strip/File 4.jpg" alt="Guests at a milestone celebration by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=director-ash"><img src="photos/4-film-strip/File 5.jpg" alt="Studio portrait frame by Selasie Visual Studio" loading="lazy"></a>
+    <a class="frame-card" href="gallery.html?g=mtn-ghana-masterclass"><img src="photos/4-film-strip/File 6.jpg" alt="Keynote moment at MTN Ghana masterclass by Selasie Visual Studio" loading="lazy"></a>
   </div>
 </section>
 
 <section id="galleries" class="gallery">
-  <div class="bgimg" data-plx="0.12"><img src="https://images-pw.pixieset.com/site/BydGR0/61R4Yn/_DSC0818-eb694566-1500.jpg" alt="" loading="lazy"></div>
+  <div class="bgimg" data-plx="0.12"><img src="photos/galleries/Events/Julius Debrah 60th Birthday/File 6.jpg" alt="" loading="lazy"></div>
   <div class="wrap rv">
     <p class="eyebrow">Client galleries</p>
     <h2 class="h2">Your gallery <em>awaits</em></h2>
@@ -478,7 +485,7 @@
 </div></section>
 
 <div class="interlude" aria-hidden="true">
-  <div class="bg" data-plx="0.14"><img src="https://images-pw.pixieset.com/site/BydGR0/1VqnWa/_DSC9804-6d2c5ce9-1500.jpeg" alt="" loading="lazy"></div>
+  <div class="bg" data-plx="0.14"><img src="photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 2.JPG" alt="" loading="lazy"></div>
   <q>Light. Story. <em>Craft.</em></q>
 </div>
 
@@ -717,7 +724,28 @@ async function hydrateText(){
     if(d.contact){ T('ctL1',d.contact.line1); T('ctL2',d.contact.line2); T('ctSub',d.contact.sub); }
   }catch(e){ /* local preview — keep built-in text */ }
 }
-Promise.all([hydratePhotos(), hydrateText()]).then(() => { wireVisuals(document); initCarousel(); });
+function initHeroSlideshow(){
+  if(reduced) return;
+  const media = document.querySelector('.hero-media');
+  const base = media && media.querySelector('img');
+  if(!base) return;
+  const extras = [...document.querySelectorAll('#strip img')].map(i => i.getAttribute('src'))
+    .filter(s => s && s !== base.getAttribute('src')).slice(0, 2);
+  if(!extras.length) return;
+  const slides = [base];
+  extras.forEach(src => {
+    const im = document.createElement('img');
+    im.src = src; im.alt = ''; im.className = 'off'; im.setAttribute('aria-hidden','true');
+    media.appendChild(im); slides.push(im);
+  });
+  let cur = 0;
+  setInterval(() => {
+    slides[cur].classList.add('off');
+    cur = (cur + 1) % slides.length;
+    slides[cur].classList.remove('off');
+  }, 7000);
+}
+Promise.all([hydratePhotos(), hydrateText()]).then(() => { wireVisuals(document); initCarousel(); initHeroSlideshow(); });
 
 /* Film strip — drag to scroll */
 const strip = document.getElementById('strip');
