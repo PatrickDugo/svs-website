@@ -42,6 +42,5 @@
 - Analytics: privacy-friendly option (e.g. GoatCounter, free) — only if wanted.
 
 **Housekeeping**
-- Delete stray photos/1-hero/README.md copy in the repo (GitHub only).
-- Retire index-ivory-backup.html + unused css/site.css, js/site.js once confident.
-- Two-factor authentication on GitHub, Netlify, and email accounts.
+- ✅ DONE (13 Jul): legacy ivory backup + unused css/site.css + js/site.js removed (recoverable from git history) · README rewritten for the current system · no stray files.
+- Two-factor authentication on GitHub, Netlify, and email accounts — Patrick's action.
