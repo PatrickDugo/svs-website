@@ -7,7 +7,7 @@
 <meta name="description" content="Selected photography galleries by Selasie Visual Studio, Accra, Ghana.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('svs-theme')||'dark'}catch(e){}</script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images-pw.pixieset.com blob: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <link rel="icon" href="images/logo-dark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,6 +112,7 @@
   <p>Let's create something like this for you — tell us about your shoot and we'll reply fast.</p>
   <a class="btn gold" href="index.html#contact">Book a session</a>
   <a class="btn" href="index.html#work">More galleries</a>
+  <a class="btn" id="nextG" style="display:none"></a>
 
 </section>
 
@@ -145,14 +146,21 @@ async function load(){
     const r = await fetch('data/galleries.json', {cache:'no-store'});
     const d = await r.json();
     const slug = new URLSearchParams(location.search).get('g');
-    const g = d.galleries.find(x => x.slug === slug) || d.galleries[0];
-    if(!g) return;
-    document.title = g.title + ' — Selasie Visual Studio';
-    document.getElementById('gCat').textContent = g.category || 'Gallery';
-    document.getElementById('gTitle').textContent = g.title;
-    document.getElementById('gDesc').textContent = g.description || '';
-    imgs = (g.images || []).filter(i => okUrl(i.src));
+    const g0 = d.galleries.find(x => x.slug === slug) || d.galleries[0];
+    if(!g0) return;
+    document.title = g0.title + ' — Selasie Visual Studio';
+    document.getElementById('gCat').textContent = g0.category || 'Gallery';
+    document.getElementById('gTitle').textContent = g0.title;
+    document.getElementById('gDesc').textContent = g0.description || '';
+    imgs = (g0.images || []).filter(i => okUrl(i.src));
     document.getElementById('gCount').textContent = imgs.length + ' photographs';
+    const idx = d.galleries.indexOf(g0), nxt = d.galleries[(idx + 1) % d.galleries.length];
+    if(nxt && nxt.slug !== g0.slug){
+      const n = document.getElementById('nextG');
+      n.textContent = 'Next: ' + nxt.title + ' →';
+      n.href = 'gallery.html?g=' + encodeURIComponent(nxt.slug);
+      n.style.display = 'inline-block';
+    }
     const grid = document.getElementById('grid');
     grid.innerHTML = imgs.map((im,i) => `
       <div class="m-item" data-i="${i}" role="button" tabindex="0" aria-label="Open image ${i+1}">

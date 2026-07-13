@@ -27,3 +27,8 @@
 - Owner: Patrick Selasie Dugo, Selasie Visual Studio, Accra, Ghana. Contact +233554637307, selasievisualstudio@gmail.com.
 - Design: dark editorial (espresso #0f0d0b + gold #d2a35d), Cormorant Garamond + Manrope, "Elegance, Unbound".
 - Old ivory design backed up at index-ivory-backup.html. Never use pure black. Don't invent testimonials/stats/prices.
+
+## Status 13 Jul 2026 (end of session)
+Everything pushed and live: Patrick's 53 photos, folder photo system + scanner, admin (working, password set),
+hover photos, hero slideshow (multi-photo via photos/1-hero/), 100% Pixieset-free, dark polish, 404, next-gallery link.
+NEXT UP (Patrick's order): domain purchase (selasievisualstudio.com, in Porkbun cart) → Search Console → Google Business Profile → bios → real testimonials/stats via /admin. See ROADMAP.md.
