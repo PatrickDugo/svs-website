@@ -16,11 +16,9 @@
 ## 🕐 LATER — improvements backlog
 
 **Design / UX**
-- Dark-mode polish: richer contrast pass, warmer shadow tones, more deliberate gold accents; refine light mode too (Patrick: "dark mode can be better").
-- Hero: consider a slow crossfade slideshow (3–4 best shots) instead of one static image.
-- Swap the two interlude banner images + gallery-band background to Patrick's own photos (still Pixieset copies today; then remove images-pw.pixieset.com from the CSP for a fully self-contained site).
-- Gallery page: category filter chips on the portfolio, "next gallery →" link at gallery end, image counter on hover.
-- Custom 404 page in the brand style.
+- ✅ DONE (13 Jul): dark-mode polish pass 1 · hero crossfade slideshow (drop 2–4 photos in photos/1-hero/ to control it) · interludes + gallery band now Patrick's own photos, site 100% Pixieset-free incl. CSP · custom 404 page · "Next gallery →" link.
+- Deeper dark-mode pass + light-mode refinement (more deliberate gold accents) — still open.
+- Gallery page: category filter chips on the portfolio, image counter on hover — still open.
 - Micro-interactions: page transitions between index ↔ gallery, cursor-following "View" pill on cards, subtle grain/texture overlay.
 - Mobile nav: full-screen menu with staggered link animation.
 
@@ -44,6 +42,6 @@
 - Analytics: privacy-friendly option (e.g. GoatCounter, free) — only if wanted.
 
 **Housekeeping**
-- Delete stray photos/1-hero/README.md copy in the repo.
+- Delete stray photos/1-hero/README.md copy in the repo (GitHub only).
 - Retire index-ivory-backup.html + unused css/site.css, js/site.js once confident.
 - Two-factor authentication on GitHub, Netlify, and email accounts.
