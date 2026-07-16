@@ -1,6 +1,6 @@
 # CLAUDE.md — Selasie Visual Studio Website
 
-Persistent guidance for Claude Code working in this repo. Read this first, then `BUILD_BRIEF.md` for the full spec.
+Persistent guidance for Claude Code working in this repo. Read this first, then `docs/BUILD_BRIEF.md` for the full spec.
 
 ## What this is
 A **premium marketing landing page** for Selasie Visual Studio (SVS), a photography & videography studio in Accra, Ghana, owned by **Patrick Selasie Dugo**. Its single job: present the work beautifully and **funnel visitors to the SVS Pixieset galleries** and to contact. **No payments or galleries are hosted on this site.**
