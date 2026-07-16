@@ -1,0 +1,111 @@
+{
+  "hero": {
+    "src": "photos/1-hero/Music.jpg",
+    "alt": "Music — Selasie Visual Studio, Accra"
+  },
+  "about_main": {
+    "src": "photos/2-about/Happy.jpg",
+    "alt": "Happy — Selasie Visual Studio"
+  },
+  "about_float": {
+    "src": "photos/2-about/party.jpg",
+    "alt": "party — Selasie Visual Studio"
+  },
+  "portfolio": [
+    {
+      "title": "MTN Ghana Masterclass",
+      "category": "Brands & Corporate",
+      "image": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 1.JPG",
+      "alt": "MTN Ghana Masterclass — Brands & Corporate photography by Selasie Visual Studio, Accra",
+      "orientation": "landscape",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "title": "Julius Debrah 60th Birthday",
+      "category": "Events",
+      "image": "photos/galleries/Events/Julius Debrah 60th Birthday/File 1.jpg",
+      "alt": "Julius Debrah 60th Birthday — Events photography by Selasie Visual Studio, Accra",
+      "orientation": "portrait",
+      "link": "gallery.html?g=julius-debrah-60th-birthday"
+    },
+    {
+      "title": "Director Ash",
+      "category": "Portraits",
+      "image": "photos/galleries/Portraits/Director Ash/File 1.jpg",
+      "alt": "Director Ash — Portraits photography by Selasie Visual Studio, Accra",
+      "orientation": "portrait",
+      "link": "gallery.html?g=director-ash"
+    }
+  ],
+  "strip": [
+    {
+      "image": "photos/4-film-strip/File 1.jpg",
+      "alt": "File 1 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 2.jpg",
+      "alt": "File 2 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 3.jpg",
+      "alt": "File 3 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 4.jpg",
+      "alt": "File 4 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 5.jpg",
+      "alt": "File 5 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 6.jpg",
+      "alt": "File 6 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 7.jpg",
+      "alt": "File 7 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 8.jpg",
+      "alt": "File 8 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 9.jpg",
+      "alt": "File 9 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 10.jpg",
+      "alt": "File 10 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    },
+    {
+      "image": "photos/4-film-strip/File 11.jpg",
+      "alt": "File 11 — Selasie Visual Studio",
+      "orientation": "portrait",
+      "link": "gallery.html?g=mtn-ghana-masterclass"
+    }
+  ],
+  "hero_slides": [
+    "photos/1-hero/Music.jpg"
+  ]
+}

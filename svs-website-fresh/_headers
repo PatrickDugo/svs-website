@@ -1,0 +1,14 @@
+# Security headers — applied automatically by Netlify / Cloudflare Pages
+# Makes the site hard to attack: no framing (clickjacking), no content sniffing,
+# strict sources for scripts/styles/images, HTTPS enforced.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+
+# Per-page Content-Security-Policy lives in a <meta> tag inside each HTML file:
+# strict policy on public pages, a scoped one on /admin (Decap CMS needs unsafe-eval).

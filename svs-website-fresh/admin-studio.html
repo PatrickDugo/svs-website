@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>SVS Studio Admin</title>
+<style>
+  :root{
+    --bg:#f7f3ec; --panel:#ffffff; --soft:#f1ebdf; --ink:#241f19; --dim:#6b5e4f;
+    --line:#e7ded0; --gold:#9c7038; --gold-deep:#7d5a2c; --ok:#3b6d3b; --warn:#8a5a1a;
+    --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15}
+  a{color:var(--gold-deep)}
+  button{font-family:inherit;cursor:pointer}
+  input,textarea,select{font-family:inherit;font-size:14px;width:100%;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 11px;transition:border-color .2s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold)}
+  textarea{resize:vertical;min-height:66px;line-height:1.5}
+  label{display:block;font-size:12px;letter-spacing:.02em;color:var(--dim);margin:0 0 5px 2px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;border:1px solid var(--gold);border-radius:8px;padding:10px 18px;font-size:13px;font-weight:600;letter-spacing:.02em}
+  .btn:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+  .btn.ghost{background:transparent;color:var(--gold-deep)}
+  .btn.ghost:hover{background:var(--soft)}
+  .btn.mini{padding:5px 10px;font-size:12px;font-weight:500}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ok);background:#eef4ee;border:1px solid #d5e6d5;border-radius:20px;padding:4px 11px}
+
+  /* Lock screen */
+  #lock{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+  .lock-card{width:100%;max-width:420px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px 30px;text-align:center;box-shadow:0 30px 70px rgba(44,38,32,.10)}
+  .lock-card h1{font-size:26px;margin-bottom:6px}
+  .lock-card .sub{color:var(--dim);font-size:13.5px;margin-bottom:22px}
+  .lock-card input{text-align:center;letter-spacing:.06em;margin-bottom:12px}
+  .lock-note{font-size:12px;color:var(--dim);margin-top:16px;line-height:1.5}
+  .gen{background:var(--soft);border:1px dashed var(--line);border-radius:10px;padding:12px;margin:4px 0 14px;font-family:ui-monospace,Menlo,monospace;font-size:15px;letter-spacing:.04em;word-break:break-all;color:var(--gold-deep)}
+  .err{color:#a33;font-size:12.5px;min-height:16px;margin-bottom:6px}
+  .logo-dot{width:52px;height:52px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:24px;margin:0 auto 16px}
+
+  /* App shell */
+  #app{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand .d{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:17px}
+  .brand b{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.02em}
+  .top-right{display:flex;align-items:center;gap:12px}
+  .layout{display:grid;grid-template-columns:196px 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.layout{grid-template-columns:1fr}}
+  nav.side{display:flex;flex-direction:column;gap:3px;position:sticky;top:18px}
+  @media(max-width:760px){nav.side{flex-direction:row;flex-wrap:wrap;position:static}}
+  .side a{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:9px;color:var(--dim);font-size:14px;font-weight:500;border-left:2px solid transparent;cursor:pointer}
+  .side a.on{background:var(--soft);color:var(--ink);border-left-color:var(--gold)}
+  .side a:hover{background:var(--soft)}
+  .side .hint{margin-top:12px;font-size:11.5px;color:var(--dim);line-height:1.5;padding:0 4px}
+  @media(max-width:760px){.side .hint{display:none}}
+
+  .tab{display:none}
+  .tab.on{display:block}
+  .card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px 22px;margin-bottom:16px}
+  .card h2{font-size:19px;margin-bottom:3px}
+  .card .csub{color:var(--dim);font-size:12.5px;margin-bottom:16px}
+  .row{margin-bottom:13px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
+  @media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}}
+  .item{border:1px solid var(--line);border-radius:11px;padding:14px 15px;margin-bottom:12px;background:var(--soft)}
+  .item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .item-top .n{font-size:12px;font-weight:600;color:var(--gold-deep);letter-spacing:.03em;text-transform:uppercase}
+  .item-actions{display:flex;gap:5px}
+  .icobtn{background:#fff;border:1px solid var(--line);border-radius:7px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--dim);line-height:1}
+  .icobtn:hover{border-color:var(--gold);color:var(--gold-deep)}
+  .icobtn.del:hover{border-color:#c66;color:#a33}
+
+  /* Photos */
+  .drop{border:2px dashed var(--line);border-radius:13px;padding:30px 20px;text-align:center;background:var(--soft);transition:border-color .2s,background .2s}
+  .drop.hot{border-color:var(--gold);background:#faf6ee}
+  .drop .big{font-size:15px;margin-top:6px}
+  .drop .small{font-size:12.5px;color:var(--dim);margin-top:3px}
+  .opt-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin:16px 0 4px}
+  .opt-row .f{flex:1;min-width:130px}
+  .res{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-top:12px;background:#fff}
+  .res img{width:78px;height:78px;object-fit:cover;border-radius:8px;flex:none;background:var(--soft)}
+  .res .meta{flex:1;min-width:0}
+  .res .meta .fn{font-size:13.5px;font-weight:600;word-break:break-all}
+  .res .meta .st{font-size:12.5px;color:var(--dim);margin-top:2px}
+  .tag{display:inline-block;font-size:11px;background:#eef4ee;color:var(--ok);border:1px solid #d5e6d5;border-radius:6px;padding:2px 8px;margin:5px 5px 0 0}
+  .desthint{font-size:12.5px;color:var(--dim);margin-top:12px}
+  .group-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .group-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .group-items{margin-top:2px}
+
+  /* Publish */
+  .step{display:flex;gap:12px;margin-bottom:14px}
+  .step .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .step .b{font-size:13.5px;line-height:1.5}
+  .changed{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--gold-deep);margin:10px 0;white-space:pre-wrap;line-height:1.7}
+  .callout{background:#fbf6ec;border:1px solid #ecdcbf;border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--warn);line-height:1.55}
+  details.prev{margin-top:8px}
+  details.prev summary{cursor:pointer;font-size:12.5px;color:var(--dim)}
+  pre.json{background:#2c2620;color:#f1e8da;border-radius:10px;padding:14px;overflow:auto;font-size:12px;line-height:1.5;max-height:340px;margin-top:10px}
+  .saved{font-size:12.5px;color:var(--ok);margin-left:6px;opacity:0;transition:opacity .3s}
+  .saved.show{opacity:1}
+  .foot{font-size:11.5px;color:var(--dim);text-align:center;margin-top:30px;line-height:1.6}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LOCK ══════════ -->
+<div id="lock">
+  <div class="lock-card">
+    <div class="logo-dot">S</div>
+
+    <div id="setup" hidden>
+      <h1>Set up your admin</h1>
+      <p class="sub">First time here — create one password to lock this tool. Keep it in your Passwords app.</p>
+      <div id="genBox" class="gen" hidden></div>
+      <button class="btn ghost mini" id="genBtn" style="margin-bottom:12px">Generate a strong password</button>
+      <input id="pwNew" type="text" autocomplete="off" placeholder="Type or paste a password">
+      <div class="err" id="setupErr"></div>
+      <button class="btn" id="setBtn" style="width:100%">Set password &amp; open</button>
+      <p class="lock-note">This is a light lock for your own device. The real protection is that this file lives only on your Mac — it is not on the internet.</p>
+    </div>
+
+    <div id="prompt" hidden>
+      <h1>Studio admin</h1>
+      <p class="sub">Enter your password to continue.</p>
+      <input id="pwIn" type="password" autocomplete="off" placeholder="Password">
+      <div class="err" id="promptErr"></div>
+      <button class="btn" id="unlockBtn" style="width:100%">Open admin</button>
+      <p class="lock-note"><a id="resetLink" href="#">Forgot it? Reset the lock</a> — this clears the saved password on this device only.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="brand"><span class="d">S</span><b>Selasie Visual Studio — studio admin</b></div>
+    <div class="top-right">
+      <span class="pill">● Local · private</span>
+      <button class="btn ghost mini" id="resetPwBtn">Reset password</button>
+      <button class="btn ghost mini" id="lockBtn">Lock</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side">
+      <a data-tab="text" class="on">✎ &nbsp;Page text</a>
+      <a data-tab="photos">◳ &nbsp;Photos</a>
+      <a data-tab="publish">▲ &nbsp;Publish</a>
+      <p class="hint">Changes here are saved as files you upload to GitHub. Nothing goes live until you publish.</p>
+    </nav>
+
+    <main>
+      <!-- TEXT -->
+      <section class="tab on" id="tab-text">
+        <div class="card">
+          <h2>Hero</h2>
+          <p class="csub">The first thing visitors see at the top of the page.</p>
+          <div class="row"><label>Kicker (small line above the title)</label><input data-path="hero.kicker"></div>
+          <div class="grid2">
+            <div class="row"><label>Title line 1</label><input data-path="hero.line1"></div>
+            <div class="row"><label>Title line 2 (shown in gold)</label><input data-path="hero.line2"></div>
+          </div>
+          <div class="row"><label>Lead sentence</label><textarea data-path="hero.lead"></textarea></div>
+        </div>
+
+        <div class="card">
+          <h2>About</h2>
+          <div class="row"><label>Heading</label><input data-path="about.heading"></div>
+          <div class="row"><label>Paragraph 1</label><textarea data-path="about.p1"></textarea></div>
+          <div class="row"><label>Paragraph 2</label><textarea data-path="about.p2"></textarea></div>
+          <div class="row"><label>Paragraph 3</label><textarea data-path="about.p3"></textarea></div>
+        </div>
+
+        <div class="card">
+          <h2>Stats</h2>
+          <p class="csub">The four numbers in the “studio in numbers” band.</p>
+          <div id="statList"></div>
+          <button class="btn ghost mini" data-act="add-stat">+ Add stat</button>
+        </div>
+
+        <div class="card">
+          <h2>Services &amp; pricing</h2>
+          <p class="csub">Each service shows on the site and in the pricing list. Drag order with the arrows.</p>
+          <div id="svcList"></div>
+          <button class="btn ghost mini" data-act="add-svc">+ Add service</button>
+          <div class="row" style="margin-top:16px"><label>Pricing terms (small print under prices)</label><textarea data-path="pricing_terms"></textarea></div>
+          <div class="row"><label>“Coming soon” line</label><input data-path="coming_soon"></div>
+        </div>
+
+        <div class="card">
+          <h2>Testimonials</h2>
+          <div id="ttmList"></div>
+          <button class="btn ghost mini" data-act="add-ttm">+ Add testimonial</button>
+        </div>
+
+        <div class="card">
+          <h2>Contact</h2>
+          <div class="grid2">
+            <div class="row"><label>Heading line 1</label><input data-path="contact.line1"></div>
+            <div class="row"><label>Heading line 2 (gold)</label><input data-path="contact.line2"></div>
+          </div>
+          <div class="row"><label>Sub line</label><textarea data-path="contact.sub"></textarea></div>
+        </div>
+      </section>
+
+      <!-- PHOTOS -->
+      <section class="tab" id="tab-photos">
+        <div class="card">
+          <h2>Optimise &amp; place photos</h2>
+          <p class="csub">Shrinks files for fast loading and strips hidden location/camera data. Choose where they belong, drop one photo or a whole gallery, and download them ready to upload. Your copyright stays yours.</p>
+
+          <div class="opt-row">
+            <div class="f"><label>Send to</label>
+              <select id="dest">
+                <option value="hero">Hero (top of page)</option>
+                <option value="about">About section</option>
+                <option value="services">Service cards</option>
+                <option value="film">Film strip</option>
+                <option value="gallery" selected>A gallery</option>
+              </select>
+            </div>
+            <div class="f gwrap"><label>Gallery category</label>
+              <select id="gCat">
+                <option>Brands &amp; Corporate</option>
+                <option>Events</option>
+                <option>Portraits</option>
+                <option>Restaurant</option>
+                <option>Outdoors</option>
+                <option>Street</option>
+                <option value="__new">＋ New category…</option>
+              </select>
+            </div>
+            <div class="f" id="gCatNewWrap" style="display:none"><label>New category name</label><input id="gCatNew" placeholder="e.g. Fashion"></div>
+            <div class="f gwrap"><label>Gallery name</label><input id="gName" placeholder="e.g. Kofi &amp; Ama" value="New Gallery"></div>
+          </div>
+
+          <div class="opt-row">
+            <div class="f"><label>Max width</label>
+              <select id="maxW"><option value="1600">1600 px</option><option value="2000" selected>2000 px</option><option value="2400">2400 px</option></select>
+            </div>
+            <div class="f"><label>Quality <span id="qOut" style="color:var(--gold-deep)">80%</span></label>
+              <input type="range" id="q" min="55" max="92" value="80" step="1" style="padding:0">
+            </div>
+            <div class="f"><label>Visible © watermark</label>
+              <select id="wm"><option value="none">Off</option><option value="br">Bottom-right</option><option value="bl">Bottom-left</option></select>
+            </div>
+          </div>
+
+          <div class="drop" id="drop">
+            <div style="font-size:24px">◳</div>
+            <div class="big">Drop photos here, or click to choose</div>
+            <div class="small">One or a whole gallery at once · JPG or PNG · nothing leaves your computer</div>
+            <input type="file" id="fileIn" accept="image/*" multiple hidden>
+          </div>
+          <div id="destHint" class="desthint"></div>
+        </div>
+
+        <div id="groups"></div>
+
+        <div class="card">
+          <h3 style="font-size:16px;margin-bottom:6px">Two ways to send them to GitHub</h3>
+          <p class="csub" style="margin:0 0 8px"><b>Download all</b> — saves each photo to your Downloads. On GitHub, open that folder and drag them all in at once. Best for updating hero, about, services, or adding to a gallery that already exists.</p>
+          <p class="csub" style="margin:0"><b>Download folder (.zip)</b> — saves the whole batch as a folder. Unzip it, then drag that folder onto GitHub's upload page — it creates the gallery folder for you. Best for a brand-new gallery.</p>
+        </div>
+      </section>
+
+      <!-- PUBLISH -->
+      <section class="tab" id="tab-publish">
+        <div class="card">
+          <h2>Publish your changes</h2>
+          <p class="csub">Download your edited text, then drag it into GitHub. That's the whole publish step.</p>
+          <div class="step"><span class="num">1</span><div class="b">Click <b>Download site.json</b> below. It saves to your Downloads folder.<br>
+            <button class="btn" id="exportBtn" style="margin-top:9px">▼ Download site.json</button><span class="saved" id="savedMsg">saved ✓</span></div></div>
+          <div class="step"><span class="num">2</span><div class="b">Go to <a href="https://github.com/PatrickDugo/svs-website" target="_blank" rel="noopener">github.com/PatrickDugo/svs-website</a> → open the <b>data</b> folder → <b>Add file → Upload files</b> → drop <code>site.json</code> in → <b>Commit changes</b>.</div></div>
+          <div class="step"><span class="num">3</span><div class="b">For any photos you optimised, upload them the same way into their <code>photos/…</code> folder.</div></div>
+          <div class="step"><span class="num">4</span><div class="b">Netlify rebuilds automatically — your live page updates in a minute or two.</div></div>
+          <div class="callout"><b>Heads-up:</b> your Netlify credits reset on <b>11 August</b>. Until then the upload still saves safely on GitHub; the live page catches up once credits return.</div>
+          <details class="prev"><summary>Preview the site.json this will save</summary><pre class="json" id="jsonPrev"></pre></details>
+        </div>
+        <div class="card">
+          <h3 style="font-size:16px;margin-bottom:6px">Keep your local copy in sync (optional)</h3>
+          <p class="csub" style="margin:0">The downloaded <code>site.json</code> also belongs in your Website folder at <code>data/site.json</code>. Replacing it there keeps your local preview matching the live site.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <p class="foot">Selasie Visual Studio · studio admin — a private tool on your Mac. It never sends your work anywhere; you choose when to publish.</p>
+</div>
+
+<script>
+/* ═══════════ current content (pre-filled) ═══════════ */
+const DEFAULT_DATA = {
+  "hero":{"kicker":"Selasie Visual Studio · Accra, Ghana","line1":"Elegance,","line2":"Unbound.","lead":"Refined photography & videography for the moments that matter — weddings, events, brands and the people behind them."},
+  "about":{"heading":"Considered, unhurried imagery","p1":"We're drawn to the moments you'd otherwise forget — the glance, the gathering, the small detail — and we shape them into images that feel as alive as the day they happened.","p2":"Founded by Patrick Selasie Dugo and built as a collaborative practice, Selasie Visual Studio works closely with you before a single frame is made: your story, your pace, your light.","p3":"Every gallery is finished in our signature style and delivered privately — images made to be lived with, returned to, and loved long after the day has passed."},
+  "stats":[{"number":150,"suffix":"+","label":"Moments captured"},{"number":60,"suffix":"+","label":"Happy clients"},{"number":48,"suffix":"hr","label":"Fastest delivery"},{"number":5,"suffix":"★","label":"Service rating"}],
+  "services":[{"title":"Brand & Content","price":"from GHS 1,500","text":"Restaurant and brand imagery that makes people stop scrolling — half-day shoots, monthly retainers available.","image":"photos/3-services/1.JPG"},{"title":"Corporate & Headshots","price":"from GHS 2,500","text":"Headshots and workplace photography that make your team look like themselves — at their very best.","image":"photos/3-services/2.JPG"},{"title":"Events & Celebrations","price":"from GHS 3,500","text":"Birthdays, launches and milestones — the candid in-between moments and every key set-piece.","image":"photos/3-services/3.jpg"},{"title":"Weddings","price":"from GHS 8,000","text":"Your day, captured with care — timeless coverage, 300+ images, film and album add-ons.","image":"photos/3-services/4.jpg"}],
+  "coming_soon":"Coming soon — hybrid wedding films & 360° virtual tours",
+  "pricing_terms":"A 50% non-refundable deposit secures your date · balance before delivery · private online gallery for 30 days · full terms apply.",
+  "testimonials":[{"quote":"They didn't just take photos — they captured exactly how the day felt. We look at the gallery and we're right back there.","name":"— EDIT: a real client"},{"quote":"Professional, calm, and the images are stunning. Our brand finally looks the way it should online.","name":"— EDIT: a brand client"},{"quote":"Fast delivery, beautiful edits, and a genuine pleasure to work with. Booking again.","name":"— EDIT: a happy client"}],
+  "contact":{"line1":"Let's make something","line2":"beautiful.","sub":"Tell us about your shoot — we reply fast. A 50% deposit secures your date."}
+};
+let DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+
+/* ═══════════ tiny helpers ═══════════ */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const getPath = (o,p) => p.split('.').reduce((a,k)=> a==null?a:a[k], o);
+function setPath(o,p,v){ const ks=p.split('.'); const last=ks.pop(); let t=o; ks.forEach(k=>{ t=t[k]; }); t[last]=v; }
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
+
+/* ═══════════ login ═══════════ */
+const AUTH_KEY = 'svsStudioAuth';
+async function sha(str){
+  try{
+    if(window.crypto && crypto.subtle){
+      const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+    }
+  }catch(e){}
+  let h = 5381; for(let i=0;i<str.length;i++){ h = ((h<<5)+h+str.charCodeAt(i))>>>0; }
+  return 'x'+h.toString(16);
+}
+function randHex(n){ const a=new Uint8Array(n); crypto.getRandomValues(a); return [...a].map(x=>x.toString(16).padStart(2,'0')).join(''); }
+function genPassword(){
+  const cs='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+  const a=new Uint32Array(18); crypto.getRandomValues(a);
+  let s=''; for(const x of a) s+=cs[x % cs.length];
+  return s.replace(/(.{6})(.{6})(.{6})/,'$1-$2-$3');
+}
+async function setPassword(pw){
+  const salt = randHex(8);
+  const hash = await sha(salt + pw);
+  const stored = lsSet(AUTH_KEY, JSON.stringify({salt, hash}));
+  openApp();
+  if(!stored){ /* localStorage blocked — session only */ sessionAuth = true; }
+}
+let sessionAuth = false;
+async function verifyPassword(pw){
+  const raw = lsGet(AUTH_KEY); if(!raw) return false;
+  try{ const {salt, hash} = JSON.parse(raw); return (await sha(salt+pw)) === hash; }catch(e){ return false; }
+}
+function showSetup(){ $('#setup').hidden=false; $('#prompt').hidden=true; setTimeout(()=>$('#pwNew').focus(),60); }
+function showPrompt(){ $('#setup').hidden=true; $('#prompt').hidden=false; setTimeout(()=>$('#pwIn').focus(),60); }
+function initLock(){ lsGet(AUTH_KEY) ? showPrompt() : showSetup(); }
+
+function openApp(){
+  $('#lock').style.display='none';
+  $('#app').hidden=false;
+  renderAll();
+}
+
+/* ═══════════ text editor ═══════════ */
+function bindStatic(){
+  $$('[data-path]').forEach(el=>{
+    const v = getPath(DATA, el.dataset.path);
+    if(v!=null) el.value = v;
+  });
+}
+function renderStats(){
+  $('#statList').innerHTML = DATA.stats.map((s,i)=>`
+    <div class="item">
+      <div class="item-top"><span class="n">Stat ${i+1}</span>
+        <div class="item-actions">
+          <button class="icobtn" data-act="up" data-arr="stats" data-i="${i}" title="Move up">↑</button>
+          <button class="icobtn" data-act="down" data-arr="stats" data-i="${i}" title="Move down">↓</button>
+          <button class="icobtn del" data-act="del" data-arr="stats" data-i="${i}" title="Remove">✕</button>
+        </div>
+      </div>
+      <div class="grid3">
+        <div><label>Number</label><input data-type="number" data-path="stats.${i}.number" value="${esc(s.number)}"></div>
+        <div><label>Suffix</label><input data-path="stats.${i}.suffix" value="${esc(s.suffix)}"></div>
+        <div><label>Label</label><input data-path="stats.${i}.label" value="${esc(s.label)}"></div>
+      </div>
+    </div>`).join('');
+}
+function renderSvc(){
+  $('#svcList').innerHTML = DATA.services.map((s,i)=>`
+    <div class="item">
+      <div class="item-top"><span class="n">Service ${i+1}</span>
+        <div class="item-actions">
+          <button class="icobtn" data-act="up" data-arr="services" data-i="${i}" title="Move up">↑</button>
+          <button class="icobtn" data-act="down" data-arr="services" data-i="${i}" title="Move down">↓</button>
+          <button class="icobtn del" data-act="del" data-arr="services" data-i="${i}" title="Remove">✕</button>
+        </div>
+      </div>
+      <div class="grid2">
+        <div><label>Title</label><input data-path="services.${i}.title" value="${esc(s.title)}"></div>
+        <div><label>Price</label><input data-path="services.${i}.price" value="${esc(s.price)}"></div>
+      </div>
+      <div class="row" style="margin-top:11px"><label>Description</label><textarea data-path="services.${i}.text">${esc(s.text)}</textarea></div>
+    </div>`).join('');
+}
+function renderTtm(){
+  $('#ttmList').innerHTML = DATA.testimonials.map((t,i)=>`
+    <div class="item">
+      <div class="item-top"><span class="n">Quote ${i+1}</span>
+        <div class="item-actions">
+          <button class="icobtn" data-act="up" data-arr="testimonials" data-i="${i}" title="Move up">↑</button>
+          <button class="icobtn" data-act="down" data-arr="testimonials" data-i="${i}" title="Move down">↓</button>
+          <button class="icobtn del" data-act="del" data-arr="testimonials" data-i="${i}" title="Remove">✕</button>
+        </div>
+      </div>
+      <div class="row"><label>Quote</label><textarea data-path="testimonials.${i}.quote">${esc(t.quote)}</textarea></div>
+      <div class="row" style="margin-bottom:0"><label>Name / caption</label><input data-path="testimonials.${i}.name" value="${esc(t.name)}"></div>
+    </div>`).join('');
+}
+function renderArrays(){ renderStats(); renderSvc(); renderTtm(); }
+function renderAll(){ bindStatic(); renderArrays(); updatePreview(); }
+
+function updatePreview(){ const el=$('#jsonPrev'); if(el) el.textContent = JSON.stringify(DATA, null, 2); }
+
+/* live input → DATA (no re-render, keeps focus) */
+$('#app').addEventListener('input', e=>{
+  const el = e.target;
+  if(el.dataset && el.dataset.path){
+    let v = el.value;
+    if(el.dataset.type === 'number'){ v = parseInt(v,10); if(isNaN(v)) v = 0; }
+    setPath(DATA, el.dataset.path, v);
+    updatePreview();
+  }
+});
+
+/* structural buttons */
+$('#app').addEventListener('click', e=>{
+  const b = e.target.closest('[data-act]'); if(!b) return;
+  const act = b.dataset.act;
+  if(act==='add-stat'){ DATA.stats.push({number:0,suffix:'',label:'New stat'}); renderStats(); updatePreview(); return; }
+  if(act==='add-svc'){ DATA.services.push({title:'New service',price:'from GHS 0',text:'',image:''}); renderSvc(); updatePreview(); return; }
+  if(act==='add-ttm'){ DATA.testimonials.push({quote:'',name:''}); renderTtm(); updatePreview(); return; }
+  const arr = b.dataset.arr; if(!arr) return;
+  const i = +b.dataset.i; const list = DATA[arr];
+  if(act==='del'){ list.splice(i,1); }
+  if(act==='up' && i>0){ [list[i-1],list[i]]=[list[i],list[i-1]]; }
+  if(act==='down' && i<list.length-1){ [list[i+1],list[i]]=[list[i],list[i+1]]; }
+  ({stats:renderStats,services:renderSvc,testimonials:renderTtm}[arr])();
+  updatePreview();
+});
+
+/* tabs */
+$$('.side a').forEach(a=> a.addEventListener('click', ()=>{
+  $$('.side a').forEach(x=>x.classList.remove('on')); a.classList.add('on');
+  $$('.tab').forEach(t=>t.classList.remove('on'));
+  $('#tab-'+a.dataset.tab).classList.add('on');
+}));
+
+/* ═══════════ export ═══════════ */
+function download(blob, name){
+  const u = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=u; a.download=name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u), 1500);
+}
+$('#exportBtn').addEventListener('click', ()=>{
+  updatePreview();
+  download(new Blob([JSON.stringify(DATA,null,2)], {type:'application/json'}), 'site.json');
+  const m=$('#savedMsg'); m.classList.add('show'); setTimeout(()=>m.classList.remove('show'), 2500);
+});
+
+/* ═══════════ photo optimiser · batch · placement ═══════════ */
+const drop=$('#drop'), fileIn=$('#fileIn');
+const groups = {}; // path -> {label, path, items:[{file,blob,outName,w,h,wm,thumb,err}]}
+
+$('#q').addEventListener('input', e=> $('#qOut').textContent = e.target.value+'%');
+drop.addEventListener('click', ()=> fileIn.click());
+fileIn.addEventListener('change', e=>{ handleFiles(e.target.files); fileIn.value=''; });
+['dragover','dragenter'].forEach(ev=> drop.addEventListener(ev, e=>{ e.preventDefault(); drop.classList.add('hot'); }));
+['dragleave','drop'].forEach(ev=> drop.addEventListener(ev, e=>{ e.preventDefault(); drop.classList.remove('hot'); }));
+drop.addEventListener('drop', e=> handleFiles(e.dataTransfer.files));
+
+['#dest','#gCat','#gName','#gCatNew'].forEach(s=> $(s).addEventListener('input', updateDestUI));
+function destInfo(){
+  const d=$('#dest').value;
+  if(d==='hero') return {label:'Hero — top of page', path:'photos/1-hero/'};
+  if(d==='about') return {label:'About section', path:'photos/2-about/'};
+  if(d==='services') return {label:'Service cards', path:'photos/3-services/'};
+  if(d==='film') return {label:'Film strip', path:'photos/4-film-strip/'};
+  let cat=$('#gCat').value;
+  if(cat==='__new') cat=($('#gCatNew').value||'').trim();
+  cat=(cat||'').trim()||'Uncategorised';
+  const name=(($('#gName').value||'').trim()||'New Gallery');
+  return {label:'Gallery — '+cat+' / '+name, path:'photos/galleries/'+cat+'/'+name+'/'};
+}
+function updateDestUI(){
+  const isG=$('#dest').value==='gallery';
+  $$('.gwrap').forEach(el=> el.style.display=isG?'':'none');
+  $('#gCatNewWrap').style.display=(isG && $('#gCat').value==='__new')?'':'none';
+  $('#destHint').innerHTML='These will be tagged for &nbsp;<b>'+esc(destInfo().path)+'</b>';
+}
+
+function fmtBytes(n){ return n<1024?n+' B' : n<1048576?(n/1024).toFixed(0)+' KB' : (n/1048576).toFixed(1)+' MB'; }
+function baseName(name){ return name.replace(/\.[^.]+$/,''); }
+
+function handleFiles(files){
+  const info=destInfo();
+  [...files].filter(f=>/^image\//.test(f.type)).forEach(f=> processImage(f, info));
+}
+function processImage(file, info){
+  const maxW=+$('#maxW').value, q=(+$('#q').value)/100, wm=$('#wm').value;
+  const img=new Image(); const url=URL.createObjectURL(file);
+  img.onload=()=>{
+    URL.revokeObjectURL(url);
+    const scale=Math.min(1, maxW/img.naturalWidth);
+    const w=Math.round(img.naturalWidth*scale), h=Math.round(img.naturalHeight*scale);
+    const c=document.createElement('canvas'); c.width=w; c.height=h;
+    const ctx=c.getContext('2d');
+    ctx.drawImage(img,0,0,w,h);              /* re-encode: strips EXIF/GPS/camera data */
+    if(wm!=='none'){
+      const pad=Math.max(14,Math.round(w*0.018)), fs=Math.max(13,Math.round(w*0.020));
+      ctx.font='600 '+fs+'px -apple-system,Segoe UI,Roboto,sans-serif'; ctx.textBaseline='bottom';
+      ctx.textAlign= wm==='bl'?'left':'right';
+      const x= wm==='bl'?pad:w-pad;
+      ctx.shadowColor='rgba(0,0,0,.55)'; ctx.shadowBlur=Math.round(fs*0.5); ctx.shadowOffsetY=1;
+      ctx.fillStyle='rgba(255,255,255,.92)'; ctx.fillText('© Selasie Visual Studio', x, h-pad);
+      ctx.shadowColor='transparent';
+    }
+    c.toBlob(blob=>{
+      addItem(info, {file, blob, outName:baseName(file.name)+'.jpg', w, h, wm:wm!=='none', thumb:URL.createObjectURL(blob)});
+    },'image/jpeg',q);
+  };
+  img.onerror=()=>{ URL.revokeObjectURL(url); addItem(info, {file, outName:file.name, err:true}); };
+  img.src=url;
+}
+function addItem(info, item){
+  if(!groups[info.path]) groups[info.path]={label:info.label, path:info.path, items:[]};
+  groups[info.path].items.push(item);
+  renderGroups();
+}
+function renderGroups(){
+  const el=$('#groups'), keys=Object.keys(groups);
+  el.innerHTML = keys.map(k=>{
+    const g=groups[k], good=g.items.filter(i=>!i.err);
+    const to=good.reduce((a,i)=>a+i.file.size,0), tn=good.reduce((a,i)=>a+i.blob.size,0);
+    const saved= to>0?Math.max(0,Math.round((1-tn/to)*100)):0;
+    return `<div class="card">
+      <div class="group-head">
+        <div><h3 style="font-size:16px">${esc(g.label)}</h3>
+          <div class="csub" style="margin:2px 0 0">${good.length} photo${good.length===1?'':'s'}${to>0?' · '+fmtBytes(to)+' → '+fmtBytes(tn)+(saved>0?' · '+saved+'% smaller':''):''}</div></div>
+        <div class="group-actions">
+          <button class="btn mini" data-dl-all="${esc(k)}">▼ Download all</button>
+          <button class="btn mini ghost" data-dl-zip="${esc(k)}">▼ Folder (.zip)</button>
+          <button class="icobtn del" data-clear="${esc(k)}" title="Clear this group">✕</button>
+        </div>
+      </div>
+      <div class="changed">Upload to GitHub → <b>${esc(k)}</b></div>
+      <div class="group-items">${g.items.map((it,idx)=> it.err
+        ? `<div class="res"><div class="meta"><div class="fn">${esc(it.outName)}</div><div class="st" style="color:#a33">Couldn't read this image — try a JPG or PNG.</div></div></div>`
+        : `<div class="res"><img src="${it.thumb}" alt="">
+            <div class="meta"><div class="fn">${esc(it.outName)}</div>
+              <div class="st">${fmtBytes(it.file.size)} → <b>${fmtBytes(it.blob.size)}</b> · ${it.w}×${it.h}</div>
+              <span class="tag">✓ location data removed</span>${it.wm?'<span class="tag">© watermark</span>':''}</div>
+            <button class="btn mini" data-dl="${esc(k)}" data-i="${idx}">▼</button></div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+$('#groups').addEventListener('click', async e=>{
+  const one=e.target.closest('[data-dl]');
+  if(one){ const it=groups[one.dataset.dl].items[+one.dataset.i]; if(it && it.blob) download(it.blob, it.outName); return; }
+  const all=e.target.closest('[data-dl-all]');
+  if(all){ groups[all.dataset.dlAll].items.filter(i=>i.blob).forEach((it,n)=> setTimeout(()=>download(it.blob,it.outName), n*300)); return; }
+  const zip=e.target.closest('[data-dl-zip]');
+  if(zip){
+    const g=groups[zip.dataset.dlZip];
+    const files=g.items.filter(i=>i.blob).map(it=>({path:g.path+it.outName, blob:it.blob}));
+    if(!files.length) return;
+    const blob=await makeZip(files);
+    const nm=(g.path.replace(/\/$/,'').split('/').pop()||'photos').replace(/[^\w\- ]/g,'').trim()||'photos';
+    download(blob, nm+'.zip'); return;
+  }
+  const clr=e.target.closest('[data-clear]');
+  if(clr){ delete groups[clr.dataset.clear]; renderGroups(); return; }
+});
+
+/* minimal ZIP (store method — no libraries, keeps folder paths) */
+function crc32(buf){ let c=~0; for(let i=0;i<buf.length;i++){ c^=buf[i]; for(let k=0;k<8;k++) c=(c>>>1)^(0xEDB88320&-(c&1)); } return (~c)>>>0; }
+async function makeZip(files){
+  const enc=new TextEncoder(), chunks=[], central=[]; let offset=0;
+  for(const f of files){
+    const data=new Uint8Array(await f.blob.arrayBuffer());
+    const name=enc.encode(f.path), crc=crc32(data);
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0x0800,true);
+    lh.setUint16(8,0,true); lh.setUint16(10,0,true); lh.setUint16(12,0,true);
+    lh.setUint32(14,crc,true); lh.setUint32(18,data.length,true); lh.setUint32(22,data.length,true);
+    lh.setUint16(26,name.length,true); lh.setUint16(28,0,true);
+    chunks.push(new Uint8Array(lh.buffer), name, data);
+    const cd=new DataView(new ArrayBuffer(46));
+    cd.setUint32(0,0x02014b50,true); cd.setUint16(4,20,true); cd.setUint16(6,20,true);
+    cd.setUint16(8,0x0800,true); cd.setUint16(10,0,true); cd.setUint16(12,0,true); cd.setUint16(14,0,true);
+    cd.setUint32(16,crc,true); cd.setUint32(20,data.length,true); cd.setUint32(24,data.length,true);
+    cd.setUint16(28,name.length,true); cd.setUint16(30,0,true); cd.setUint16(32,0,true);
+    cd.setUint16(34,0,true); cd.setUint16(36,0,true); cd.setUint32(38,0,true); cd.setUint32(42,offset,true);
+    central.push(new Uint8Array(cd.buffer), name);
+    offset += 30 + name.length + data.length;
+  }
+  const cdStart=offset; let cdSize=0;
+  for(const c of central){ chunks.push(c); cdSize+=c.length; }
+  const eo=new DataView(new ArrayBuffer(22));
+  eo.setUint32(0,0x06054b50,true); eo.setUint16(8,files.length,true); eo.setUint16(10,files.length,true);
+  eo.setUint32(12,cdSize,true); eo.setUint32(16,cdStart,true);
+  chunks.push(new Uint8Array(eo.buffer));
+  return new Blob(chunks,{type:'application/zip'});
+}
+
+/* ═══════════ lock wiring ═══════════ */
+$('#genBtn').addEventListener('click', ()=>{
+  const pw = genPassword();
+  $('#genBox').hidden=false; $('#genBox').textContent = pw;
+  $('#pwNew').value = pw;
+});
+$('#setBtn').addEventListener('click', async ()=>{
+  const pw = $('#pwNew').value.trim();
+  if(pw.length < 6){ $('#setupErr').textContent = 'Use at least 6 characters.'; return; }
+  await setPassword(pw);
+});
+$('#pwNew').addEventListener('keydown', e=>{ if(e.key==='Enter') $('#setBtn').click(); });
+$('#unlockBtn').addEventListener('click', async ()=>{
+  const pw = $('#pwIn').value;
+  if(await verifyPassword(pw)){ openApp(); }
+  else { $('#promptErr').textContent = 'That password doesn\'t match.'; $('#pwIn').select(); }
+});
+$('#pwIn').addEventListener('keydown', e=>{ if(e.key==='Enter') $('#unlockBtn').click(); });
+$('#resetLink').addEventListener('click', e=>{
+  e.preventDefault();
+  if(confirm('Reset the lock on this device? You will set a new password next time.')){ lsDel(AUTH_KEY); showSetup(); }
+});
+$('#lockBtn').addEventListener('click', ()=>{
+  $('#app').hidden=true; $('#lock').style.display='flex';
+  $('#pwIn').value=''; lsGet(AUTH_KEY) ? showPrompt() : showSetup();
+});
+$('#resetPwBtn').addEventListener('click', ()=>{
+  if(confirm('Reset your admin password? You will set a new one now.')){
+    lsDel(AUTH_KEY);
+    $('#app').hidden=true; $('#lock').style.display='flex';
+    $('#pwNew').value=''; $('#genBox').hidden=true; $('#setupErr').textContent='';
+    showSetup();
+  }
+});
+
+updateDestUI();
+initLock();
+</script>
+</body>
+</html>

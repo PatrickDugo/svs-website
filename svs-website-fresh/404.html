@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found — Selasie Visual Studio</title>
+<meta name="robots" content="noindex">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('svs-theme')||'dark'}catch(e){}</script>
+<link rel="icon" href="images/logo-dark.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0f0d0b;--ink:#f5efe4;--dim:#b3a99b;--gold:#d2a35d;--line:rgba(243,237,226,.12)}
+  html[data-theme="light"]{--bg:#f7f3ec;--ink:#241f19;--dim:#6b5e4f;--gold:#9c7038;--line:rgba(44,38,32,.14)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;font-weight:300;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+  img{width:70px;margin-bottom:26px}
+  .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(5rem,16vw,9rem);line-height:1;color:var(--gold)}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.5rem,4vw,2.2rem);margin:14px 0 10px}
+  p{color:var(--dim);max-width:420px;margin-bottom:36px}
+  a{display:inline-block;padding:16px 42px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;font-weight:600;transition:all .3s}
+  a:hover{background:var(--gold);color:#171310}
+</style>
+</head>
+<body>
+  <img id="lg" src="images/logo-white.png" alt="Selasie Visual Studio">
+  <div class="num">404</div>
+  <h1>This frame doesn't exist.</h1>
+  <p>The page you're looking for has moved or never was — but the galleries are very real.</p>
+  <a href="/">Back to the studio</a>
+  <script>
+    try{ if((localStorage.getItem('svs-theme')||'dark')==='light') document.getElementById('lg').src='images/logo-dark.png'; }catch(e){}
+  </script>
+</body>
+</html>

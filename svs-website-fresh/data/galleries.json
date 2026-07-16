@@ -1,0 +1,206 @@
+{
+  "galleries": [
+    {
+      "slug": "mtn-ghana-masterclass",
+      "title": "MTN Ghana Masterclass",
+      "category": "Brands & Corporate",
+      "description": "",
+      "cover": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 1.JPG",
+      "images": [
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 1.JPG",
+          "alt": "File 1 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 2.JPG",
+          "alt": "File 2 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 3.JPG",
+          "alt": "File 3 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 4.JPG",
+          "alt": "File 4 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 5.JPG",
+          "alt": "File 5 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 6.JPG",
+          "alt": "File 6 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 7.JPG",
+          "alt": "File 7 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 8.JPG",
+          "alt": "File 8 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 9.JPG",
+          "alt": "File 9 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 10.JPG",
+          "alt": "File 10 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Brands & Corporate/MTN Ghana Masterclass/File 11.JPG",
+          "alt": "File 11 — MTN Ghana Masterclass by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
+      "slug": "julius-debrah-60th-birthday",
+      "title": "Julius Debrah 60th Birthday",
+      "category": "Events",
+      "description": "",
+      "cover": "photos/galleries/Events/Julius Debrah 60th Birthday/File 1.jpg",
+      "images": [
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 1.jpg",
+          "alt": "File 1 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 2.jpg",
+          "alt": "File 2 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 3.jpg",
+          "alt": "File 3 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 4.jpg",
+          "alt": "File 4 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 5.jpg",
+          "alt": "File 5 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 6.jpg",
+          "alt": "File 6 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 7.jpg",
+          "alt": "File 7 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 8.jpg",
+          "alt": "File 8 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 9.jpg",
+          "alt": "File 9 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 10.jpg",
+          "alt": "File 10 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "landscape"
+        },
+        {
+          "src": "photos/galleries/Events/Julius Debrah 60th Birthday/File 11.jpg",
+          "alt": "File 11 — Julius Debrah 60th Birthday by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "slug": "director-ash",
+      "title": "Director Ash",
+      "category": "Portraits",
+      "description": "Capturing the renowned Director Ash in her element — a portrait session brought to life within the vibrant world of Kicks & Clothes Temple.",
+      "cover": "photos/galleries/Portraits/Director Ash/File 1.jpg",
+      "images": [
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 1.jpg",
+          "alt": "File 1 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 2.jpg",
+          "alt": "File 2 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 3.jpg",
+          "alt": "File 3 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 4.jpg",
+          "alt": "File 4 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 5.jpg",
+          "alt": "File 5 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 6.jpg",
+          "alt": "File 6 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 7.jpg",
+          "alt": "File 7 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 8.jpg",
+          "alt": "File 8 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 9.jpg",
+          "alt": "File 9 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 10.jpg",
+          "alt": "File 10 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 11.jpg",
+          "alt": "File 11 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 12.jpg",
+          "alt": "File 12 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        },
+        {
+          "src": "photos/galleries/Portraits/Director Ash/File 13.jpg",
+          "alt": "File 13 — Director Ash by Selasie Visual Studio, Accra",
+          "orientation": "portrait"
+        }
+      ]
+    }
+  ]
+}

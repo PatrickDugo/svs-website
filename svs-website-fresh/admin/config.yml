@@ -1,0 +1,133 @@
+# SVS Admin — Decap CMS configuration
+# Backend: Netlify Git Gateway (activate in Netlify: Identity + Git Gateway)
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos are stored in the repository
+media_folder: "images/uploads"
+public_folder: "images/uploads"
+
+site_url: https://www.selasievisualstudio.com
+logo_url: https://www.selasievisualstudio.com/images/logo-dark.png
+
+collections:
+  - name: "site"
+    label: "Website Photos"
+    files:
+      - label: "All page photos"
+        name: "photos"
+        file: "data/photos.json"
+        fields:
+          - label: "Hero photo (big opening image)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Description (for Google & accessibility)", name: "alt", widget: "string" }
+          - label: "About — main photo"
+            name: "about_main"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Description", name: "alt", widget: "string" }
+          - label: "About — small floating photo"
+            name: "about_float"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Description", name: "alt", widget: "string" }
+          - label: "Portfolio cards"
+            name: "portfolio"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category (Events / Portraits / Weddings…)", name: "category", widget: "string" }
+              - { label: "Cover image", name: "image", widget: "image" }
+              - { label: "Photo shape", name: "orientation", widget: "select", options: ["portrait", "landscape"], default: "portrait", required: false }
+              - { label: "Description", name: "alt", widget: "string" }
+              - { label: "Gallery link (e.g. gallery.html?g=your-gallery)", name: "link", widget: "string", default: "gallery.html" }
+          - label: "Film strip (Recent frames)"
+            name: "strip"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Photo shape", name: "orientation", widget: "select", options: ["portrait", "landscape"], default: "portrait", required: false }
+              - { label: "Description", name: "alt", widget: "string" }
+              - { label: "Gallery link (e.g. gallery.html?g=your-gallery)", name: "link", widget: "string", default: "gallery.html" }
+      - label: "Page text (headings, prices, testimonials)"
+        name: "sitetext"
+        file: "data/site.json"
+        fields:
+          - label: "Hero (opening screen)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Small top line", name: "kicker", widget: "string" }
+              - { label: "Big line 1", name: "line1", widget: "string" }
+              - { label: "Big line 2 (gold italic)", name: "line2", widget: "string" }
+              - { label: "Sub-text", name: "lead", widget: "text" }
+          - label: "About the studio"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Heading (last word turns gold)", name: "heading", widget: "string" }
+              - { label: "Paragraph 1 (big serif)", name: "p1", widget: "text" }
+              - { label: "Paragraph 2", name: "p2", widget: "text" }
+              - { label: "Paragraph 3", name: "p3", widget: "text" }
+          - label: "Stats (the animated numbers)"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.number}}{{fields.suffix}} {{fields.label}}"
+            fields:
+              - { label: "Number", name: "number", widget: "number", value_type: "int" }
+              - { label: "Suffix (+, hr, ★)", name: "suffix", widget: "string", required: false }
+              - { label: "Label", name: "label", widget: "string" }
+          - label: "Services (cards + pricing table)"
+            name: "services"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Service name", name: "title", widget: "string" }
+              - { label: "Price (e.g. from GHS 1,500)", name: "price", widget: "string" }
+              - { label: "Short description", name: "text", widget: "text" }
+              - { label: "Hover background photo", name: "image", widget: "image", required: false }
+          - { label: "Coming soon line", name: "coming_soon", widget: "string", required: false }
+          - { label: "Pricing terms line", name: "pricing_terms", widget: "string" }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Client name / label", name: "name", widget: "string" }
+          - label: "Contact section"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Heading line 1", name: "line1", widget: "string" }
+              - { label: "Heading line 2 (gold italic)", name: "line2", widget: "string" }
+              - { label: "Sub-text", name: "sub", widget: "text" }
+      - label: "Galleries (full photo collections)"
+        name: "galleries"
+        file: "data/galleries.json"
+        fields:
+          - label: "Galleries"
+            name: "galleries"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Web address name (lowercase-with-dashes, e.g. ama-wedding)", name: "slug", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category (Events / Portraits / Weddings…)", name: "category", widget: "string" }
+              - { label: "Short description", name: "description", widget: "text", required: false }
+              - { label: "Cover image", name: "cover", widget: "image" }
+              - label: "Photos"
+                name: "images"
+                widget: "list"
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: "Photo", name: "src", widget: "image" }
+                  - { label: "Description (helps Google find you)", name: "alt", widget: "string", required: false }
